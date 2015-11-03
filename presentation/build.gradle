@@ -20,8 +20,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     def presentationDependencies = rootProject.ext.presentationDependencies
+    compile presentationDependencies.card
     compile presentationDependencies.appcompat
     compile presentationDependencies.design
     compile presentationDependencies.beam
@@ -29,4 +30,6 @@ dependencies {
     compile presentationDependencies.butterKnife
     compile presentationDependencies.utils
     compile presentationDependencies.materialDialogs
+    compile project(':data')
+    compile project(':domain')
 }

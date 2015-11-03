@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+    <View
+        android:id="@+id/color"
+        android:layout_width="16dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_green_light"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            tools:text="支付婊"/>
+        <TextView
+            android:id="@+id/account"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/TextAppearance.AppCompat.Body1"
+            tools:text="15683384295"/>
+        <TextView
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            style="@style/TextAppearance.AppCompat.Body1"
+            tools:text="asfasifnajsdnfl"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/copy"
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_gravity="right"
+        android:src="@drawable/ic_copy"/>
+
+</android.support.v7.widget.CardView>
+
+

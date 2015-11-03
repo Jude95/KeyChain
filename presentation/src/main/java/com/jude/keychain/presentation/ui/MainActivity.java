@@ -1,25 +1,44 @@
-package com.jude.keychain;
+package com.jude.keychain.presentation.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class MainActivity extends AppCompatActivity
+import com.jude.beam.bijection.RequiresPresenter;
+import com.jude.beam.expansion.list.BeamListActivity;
+import com.jude.beam.expansion.list.ListConfig;
+import com.jude.easyrecyclerview.adapter.BaseViewHolder;
+import com.jude.keychain.R;
+import com.jude.keychain.domain.entities.KeyEntity;
+import com.jude.keychain.presentation.presenter.MainPresenter;
+import com.jude.keychain.presentation.viewholder.KeyViewHolder;
+
+@RequiresPresenter(MainPresenter.class)
+public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    @Override
+    protected ListConfig getConfig() {
+        return super.getConfig().setContainerProgressAble(false);
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.activity_main;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,6 +59,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    @Override
+    protected BaseViewHolder getViewHolder(ViewGroup parent, int viewType) {
+        return new KeyViewHolder(parent);
     }
 
     @Override
