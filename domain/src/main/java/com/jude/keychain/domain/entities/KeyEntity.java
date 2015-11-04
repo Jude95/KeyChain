@@ -7,24 +7,23 @@ public class KeyEntity {
     private String name;
     private String account;
     private String password;
-    private String info;
+    private String note;
     private int type;
 
     public int getType() {
         return type;
     }
-
     public void setType(int type) {
         this.type = type;
     }
 
 
-    public String getInfo() {
-        return info;
+    public String getNote() {
+        return note;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getAccount() {

@@ -23,6 +23,7 @@ dependencies {
     compile project(':domain')
 
     def dataDependencies = rootProject.ext.dataDependencies
+    compile dataDependencies.gson
     compile dataDependencies.beam
     compile dataDependencies.utils
     compile dataDependencies.sqlbrite

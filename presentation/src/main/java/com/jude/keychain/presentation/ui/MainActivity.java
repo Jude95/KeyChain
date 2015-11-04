@@ -1,9 +1,9 @@
 package com.jude.keychain.presentation.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,6 +21,7 @@ import com.jude.keychain.R;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.presentation.presenter.MainPresenter;
 import com.jude.keychain.presentation.viewholder.KeyViewHolder;
+import com.jude.swipbackhelper.SwipeBackHelper;
 
 @RequiresPresenter(MainPresenter.class)
 public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
@@ -28,7 +29,7 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
 
     @Override
     protected ListConfig getConfig() {
-        return super.getConfig().setContainerProgressAble(false);
+        return super.getConfig();
     }
 
     @Override
@@ -39,6 +40,7 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,8 +48,7 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(MainActivity.this,AddActivity.class));
             }
         });
 

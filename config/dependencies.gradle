@@ -1,19 +1,14 @@
-allprojects {
-    repositories {
-        jcenter()
-        maven { url "https://jitpack.io" }
-    }
-}
 
 ext {
     //Version
     beamVersion             = '2.4.7'
     supportLibraryVersion   = '23.0.1'
-    swipeBackHelperVersion  = '2.1.0'
+    swipeBackHelperVersion  = '2.1.1'
     butterKnife             = '7.0.1'
     utilsVersion            = '1.0.7'
-    materialDialogsVersion  = '0.8.2.0'
+    materialDialogsVersion  = '0.8.5.0'
     sqlbriteVersion         = '0.4.0'
+    gsonVersion             = '2.4'
 
     //libraries dependencies
     presentationDependencies = [
@@ -24,12 +19,18 @@ ext {
             swipeBackHelper     : "com.jude:swipebackhelper:${swipeBackHelperVersion}",
             butterKnife         : "com.jakewharton:butterknife:${butterKnife}",
             utils               : "com.jude:utils:${utilsVersion}",
-            materialDialogs     : "com.afollestad.material-dialogs:core:${materialDialogsVersion}@aar{transitive = true}",
+            materialDialogsCommons     : "com.afollestad.material-dialogs:commons:${materialDialogsVersion}@aar",
+            materialDialogsCore     : "com.afollestad.material-dialogs:core:${materialDialogsVersion}@aar",
     ]
 
     dataDependencies = [
+            gson                : "com.google.code.gson:gson:${gsonVersion}",
             beam                : "com.jude:beam:${beamVersion}",
             utils               : "com.jude:utils:${utilsVersion}",
             sqlbrite            : "com.squareup.sqlbrite:sqlbrite:${sqlbriteVersion}"
+    ]
+
+    domainDependencies = [
+            gson                : "com.google.code.gson:gson:${gsonVersion}"
     ]
 }

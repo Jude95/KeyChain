@@ -28,7 +28,8 @@ public class KeyModel extends AbsModel {
             entity.setName("淘宝");
             entity.setAccount("15683384295");
             entity.setPassword("ffdsanjsjak");
-            entity.setType(i%3);
+            entity.setType(i%6);
+            list.add(entity);
         }
         return list;
     }
