@@ -1,13 +1,22 @@
 package com.jude.keychain.data.model;
 
+import android.content.Context;
+import android.support.annotation.Nullable;
+
 import com.jude.beam.model.AbsModel;
+import com.jude.keychain.data.tools.Recorder;
 import com.jude.keychain.domain.entities.KeyEntity;
+import com.jude.utils.JUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
 import rx.Observable;
+import rx.Subscriber;
+import rx.subjects.BehaviorSubject;
 
 /**
  * Created by zhuchenxi on 15/11/3.
@@ -34,13 +43,117 @@ public class KeyModel extends AbsModel {
             'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W',
             'X', 'Y', 'Z'
     };
+
+    private List<KeyEntity> mData;
+    private KeyEntity mLastDelete;
+    private BehaviorSubject<List<KeyEntity>> mKeyEntitiesSubject = BehaviorSubject.create();
+
     public static KeyModel getInstance() {
         return getInstance(KeyModel.class);
     }
 
-    public Observable<List<KeyEntity>> readKeyEntryByType(int type){
-        return Observable.just(createKeyEntry(20));
+    @Override
+    protected void onAppCreate(Context ctx) {
+        super.onAppCreate(ctx);
+        mData = Recorder.read();
+        if (mData == null)mData = new ArrayList<>();
+        Collections.sort(mData, new Comparator<KeyEntity>() {
+            @Override
+            public int compare(KeyEntity lhs, KeyEntity rhs) {
+                return lhs.getId()-rhs.getId();
+            }
+        });
+        mKeyEntitiesSubject.unsafeSubscribe(new Subscriber<List<KeyEntity>>() {
+            @Override
+            public void onCompleted() {
+                JUtils.Log("onCompleted");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<KeyEntity> keyEntities) {
+                JUtils.Log("Get" + keyEntities.size());
+                Recorder.save(keyEntities);
+            }
+        });
+        mKeyEntitiesSubject.onNext(mData);
     }
+
+    public Observable<List<KeyEntity>> readKeyEntryByType(final int type){
+        return mKeyEntitiesSubject;
+    }
+
+    @Nullable
+    public KeyEntity getKeyById(int id){
+        for (KeyEntity keyEntity : mData) {
+            if (keyEntity.getId() == id){
+                return keyEntity;
+            }
+        }
+        return null;
+    }
+
+    public boolean containId(int id){
+        for (KeyEntity keyEntity : mData) {
+            if(keyEntity.getId() == id)return true;
+        }
+        return false;
+    }
+
+    public void createKey(String name,String account,String password,String note,int type){
+        KeyEntity keyEntity = new KeyEntity();
+        keyEntity.setName(name);
+        keyEntity.setTime(System.currentTimeMillis() / 1000);
+        keyEntity.setAccount(account);
+        keyEntity.setPassword(password);
+        keyEntity.setNote(note);
+        keyEntity.setId(getNewId());
+        keyEntity.setType(type);
+        mData.add(keyEntity);
+        mKeyEntitiesSubject.onNext(mData);
+    }
+
+    public void updateKey(int id,String name,String account,String password,String note,int type){
+        for (KeyEntity keyEntity : mData) {
+            if (keyEntity.getId() == id){
+                keyEntity.setName(name);
+                keyEntity.setAccount(account);
+                keyEntity.setPassword(password);
+                keyEntity.setNote(note);
+                keyEntity.setType(type);
+            }
+        }
+        mKeyEntitiesSubject.onNext(mData);
+    }
+
+    public void delete(int id){
+        for (KeyEntity keyEntity : new ArrayList<>(mData)) {
+            if (keyEntity.getId() == id){
+                mLastDelete = keyEntity;
+                mData.remove(keyEntity);
+            }
+        }
+        mKeyEntitiesSubject.onNext(mData);
+    }
+
+    public void undoDelete(){
+        mLastDelete.setId(getNewId());
+        mData.add(mLastDelete);
+        mKeyEntitiesSubject.onNext(mData);
+    }
+
+    private int getNewId(){
+        int id = 0;
+        if (mData.size()>0){
+            id = mData.get(mData.size() - 1).getId() + 1;
+        }
+        return id;
+    }
+
 
     public String createKey(int type,int count){
         Random random = new Random(System.nanoTime());
@@ -61,19 +174,5 @@ public class KeyModel extends AbsModel {
             key+=cur;
         }
         return key;
-    }
-
-    private List<KeyEntity> createKeyEntry(int count){
-        List<KeyEntity> list = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            KeyEntity entity = new KeyEntity();
-            entity.setName("淘宝");
-            entity.setAccount("15683384295");
-            entity.setPassword("ffdsanjsjak");
-            entity.setType(i%6);
-            list.add(entity);
-
-        }
-        return list;
     }
 }

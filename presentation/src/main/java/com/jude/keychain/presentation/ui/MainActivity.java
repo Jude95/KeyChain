@@ -4,14 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jude.beam.bijection.RequiresPresenter;
 import com.jude.beam.expansion.list.BeamListActivity;
@@ -22,14 +24,23 @@ import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.presentation.presenter.MainPresenter;
 import com.jude.keychain.presentation.viewholder.KeyViewHolder;
 import com.jude.swipbackhelper.SwipeBackHelper;
+import com.jude.utils.JUtils;
 
 @RequiresPresenter(MainPresenter.class)
 public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private TextView mLastView;
+    private FloatingActionButton mFabAdd;
     @Override
     protected ListConfig getConfig() {
-        return super.getConfig();
+        mLastView = new TextView(this);
+        mLastView.setGravity(Gravity.CENTER);
+        mLastView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, JUtils.dip2px(48)));
+        return super.getConfig().setNoMoreView(mLastView);
+    }
+
+    public void setCount(int count){
+        mLastView.setText(String.format(getString(R.string.total_format), count));
     }
 
     @Override
@@ -40,17 +51,13 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,AddActivity.class));
-            }
-        });
+        mFabAdd = (FloatingActionButton) findViewById(R.id.fab);
+        mFabAdd.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, AddActivity.class)));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -62,6 +69,16 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
+    public void showDeleteSnackBar(){
+        final Snackbar snackbar = Snackbar.make(mFabAdd,R.string.delete_done,Snackbar.LENGTH_LONG);
+        snackbar.setAction(R.string.backout, v -> {
+            getPresenter().unDelete();
+            snackbar.dismiss();
+        });
+        snackbar.show();
+    }
+
 
     @Override
     protected BaseViewHolder getViewHolder(ViewGroup parent, int viewType) {

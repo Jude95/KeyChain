@@ -5,14 +5,14 @@ package com.jude.keychain.domain.value;
  */
 public enum Color {
 
-    Red("#F44336",0),
+    Green("#4CAF50",0),
     Purple("#9C27B0",1),
     Blue("#2196F3",2),
-    Green("#4CAF50",3),
+    Red("#F44336",3),
     Orange("#FF9800",4),
     Brown("#795548",5),
     Yellow("#FFEB3B",6),
-    Teal("#009688",7);
+    Grey("#9E9E9E",7);
 
     private int color;
     private int type;

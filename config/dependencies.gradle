@@ -1,7 +1,7 @@
 
 ext {
     //Version
-    beamVersion             = '2.4.7'
+    beamVersion             = '2.4.8'
     supportLibraryVersion   = '23.0.1'
     swipeBackHelperVersion  = '2.1.1'
     butterKnife             = '7.0.1'
@@ -9,12 +9,13 @@ ext {
     materialDialogsVersion  = '0.8.5.0'
     sqlbriteVersion         = '0.4.0'
     gsonVersion             = '2.4'
-
+    rippleVersion           = '1.0.2'
     //libraries dependencies
     presentationDependencies = [
             appcompat           : "com.android.support:appcompat-v7:${supportLibraryVersion}",
             design              : "com.android.support:design:${supportLibraryVersion}",
             card                : "com.android.support:cardview-v7:${supportLibraryVersion}",
+            ripple              : "com.balysv:material-ripple:${rippleVersion}",
             beam                : "com.jude:beam:${beamVersion}",
             swipeBackHelper     : "com.jude:swipebackhelper:${swipeBackHelperVersion}",
             butterKnife         : "com.jakewharton:butterknife:${butterKnife}",

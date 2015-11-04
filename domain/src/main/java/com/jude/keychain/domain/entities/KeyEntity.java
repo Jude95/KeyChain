@@ -1,14 +1,34 @@
 package com.jude.keychain.domain.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by zhuchenxi on 15/11/3.
  */
-public class KeyEntity {
+public class KeyEntity implements Serializable{
+    private int id = -1;
     private String name;
     private String account;
     private String password;
     private String note;
     private int type;
+    private long time;
+
+    public int getId() {
+        return id;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getType() {
         return type;

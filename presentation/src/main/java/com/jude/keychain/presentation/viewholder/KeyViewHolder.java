@@ -35,21 +35,10 @@ public class KeyViewHolder extends BaseViewHolder<KeyEntity> {
     public KeyViewHolder(ViewGroup parent) {
         super(parent, R.layout.item_key);
         ButterKnife.bind(this, itemView);
-        copy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new MaterialDialog.Builder(v.getContext())
-                        .title("选择复制")
-                        .items(new String[]{"账号","密码"})
-                        .itemsCallback(new MaterialDialog.ListCallback() {
-                            @Override
-                            public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
-                                    JUtils.copyToClipboard(i==0?data.getAccount():data.getPassword());
-                            }
-                        })
-                        .show();
-            }
-        });
+        copy.setOnClickListener(v -> new MaterialDialog.Builder(v.getContext())
+                .items(new String[]{v.getContext().getString(R.string.copy_account), v.getContext().getString(R.string.copy_password)})
+                .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(i == 0 ? data.getAccount() : data.getPassword()))
+                .show());
     }
 
     @Override

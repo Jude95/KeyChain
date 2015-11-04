@@ -36,6 +36,7 @@ dependencies {
     compile presentationDependencies.utils
     compile presentationDependencies.materialDialogsCore
     compile presentationDependencies.materialDialogsCommons
+    compile presentationDependencies.ripple
     compile project(':data')
     compile project(':domain')
 }

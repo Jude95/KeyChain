@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,14 +12,177 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="40dp"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_account"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        style="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:text="@string/key_account"/>
+
+                    <TextView
+                        android:id="@+id/account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Base.TextAppearance.AppCompat.Large"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        tools:text="973829691@qq.com"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_divider_black"
+                android:layout_marginLeft="72dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_password"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        style="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:text="@string/key_password"/>
+                    <TextView
+                        android:id="@+id/password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Base.TextAppearance.AppCompat.Large"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        tools:text="f534ghuiwrh"/>
+                    </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_divider_black"
+                android:layout_marginLeft="72dp"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_time"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        style="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:text="@string/key_time"/>
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        tools:text="2013年12月8日"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_divider_black"
+                android:layout_marginLeft="72dp"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_note"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        style="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:text="@string/key_note"/>
+                    <TextView
+                        android:id="@+id/note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="无"/>
+                    </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/md_divider_black"
+                android:layout_marginLeft="72dp"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.AppBarOverlay"
         >
@@ -34,14 +196,15 @@
             app:expandedTitleTextAppearance="@style/Title.Expanded"
             app:collapsedTitleTextAppearance="@style/Title.collapsed"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true"
             >
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
                 android:theme="@style/AppTheme.AppBarOverlay"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:layout_collapseMode="pin"
                 >
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>

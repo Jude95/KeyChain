@@ -116,6 +116,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     @Override
     public void onColorSelection(ColorChooserDialog colorChooserDialog, int i) {
         getPresenter().setColorType(Color.getTypeByColor(i));
+        type.setBackgroundColor(i);
     }
 
     private void createPassword(){
