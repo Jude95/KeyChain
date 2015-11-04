@@ -19,4 +19,9 @@
     <string name="cancel">取消</string>
     <string name="done">确定</string>
     <string name="create_password">生成密码</string>
+    <string-array name="password_type">
+        <item>数字字母</item>
+        <item>数字字母大小写</item>
+        <item>纯数字</item>
+    </string-array>
 </resources>

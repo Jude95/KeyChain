@@ -3,8 +3,10 @@ package com.jude.keychain.presentation.presenter;
 import android.os.Bundle;
 
 import com.jude.beam.expansion.data.BeamDataActivityPresenter;
+import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.presentation.ui.AddActivity;
+import com.jude.utils.JUtils;
 
 /**
  * Created by Mr.Jude on 2015/11/3.
@@ -26,4 +28,8 @@ public class AddPresenter extends BeamDataActivityPresenter<AddActivity,KeyEntit
 
     }
 
+    public String createPassword(int type,int count){
+        JUtils.Log("type"+type);
+        return KeyModel.getInstance().createKey(type,count);
+    }
 }
