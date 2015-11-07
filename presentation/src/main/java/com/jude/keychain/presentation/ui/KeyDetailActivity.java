@@ -19,6 +19,7 @@ import com.jude.keychain.R;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.presentation.presenter.KeyDetailPresenter;
 import com.jude.utils.JTimeTransform;
+import com.jude.utils.JUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -53,11 +54,20 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
+
         floatingActionButton.setOnClickListener(v -> {
             Intent i = new Intent(this, AddActivity.class);
             i.putExtra("id", data.getId());
             startActivity(i);
         });
+        account.setOnClickListener(v -> new MaterialDialog.Builder(this)
+                .items(new String[]{v.getContext().getString(R.string.copy_account)})
+                .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(data.getAccount()))
+                .show());
+        password.setOnClickListener(v -> new MaterialDialog.Builder(this)
+                .items(new String[]{v.getContext().getString(R.string.copy_password)})
+                .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(data.getPassword()))
+                .show());
     }
 
     @Override

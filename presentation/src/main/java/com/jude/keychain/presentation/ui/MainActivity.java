@@ -1,6 +1,7 @@
 package com.jude.keychain.presentation.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
@@ -42,12 +44,18 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
     PaddingStatusBarFrameLayout toolbarContainer;
     private TextView mLastView;
     private FloatingActionButton mFabAdd;
+    private SearchView search;
 
     @Override
     protected ListConfig getConfig() {
         mLastView = new TextView(this);
         mLastView.setGravity(Gravity.CENTER);
-        mLastView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, JUtils.dip2px(48)));
+        int height = JUtils.dip2px(48);
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP){
+            mLastView.setPadding(0,0,0,JUtils.getNavigationBarHeight());
+            height+=JUtils.getNavigationBarHeight();
+        }
+        mLastView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height));
         return super.getConfig().setNoMoreView(mLastView);
     }
 
@@ -112,6 +120,19 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        search = (SearchView) menu.findItem(R.id.search).getActionView();
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                getPresenter().search(newText);
+                return false;
+            }
+        });
         return true;
     }
 
@@ -125,7 +146,7 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         //noinspection SimplifiableIfStatement
         if (id == R.id.color) {
             ColorChooserDialog dialog = new ColorChooserDialog.Builder(this, R.string.color_palette)
-                    .preselect(Color.Green.getColor())
+                    .preselect(Color.getColorByType(getPresenter().getColorType()))
                     .allowUserColorInput(false)
                     .customButton(R.string.all)
                     .cancelButton(R.string.cancel)

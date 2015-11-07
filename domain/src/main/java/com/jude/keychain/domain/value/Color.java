@@ -11,7 +11,7 @@ public enum Color {
     Red("#F44336",3),
     Orange("#FF9800",4),
     Brown("#795548",5),
-    Yellow("#FFEB3B",6),
+    Yellow("#FFD600",6),
     Grey("#9E9E9E",7);
 
     private int color;

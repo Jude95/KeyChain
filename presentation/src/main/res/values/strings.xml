@@ -32,6 +32,7 @@
     <string name="copy_password">复制密码</string>
     <string name="color">颜色</string>
     <string name="all">全部</string>
+    <string name="search">搜索</string>
     <string-array name="password_type">
         <item>数字字母</item>
         <item>数字字母大小写</item>

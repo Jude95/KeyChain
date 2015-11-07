@@ -5,7 +5,7 @@ ext {
     supportLibraryVersion   = '23.0.1'
     swipeBackHelperVersion  = '2.1.1'
     butterKnife             = '7.0.1'
-    utilsVersion            = '1.0.7'
+    utilsVersion            = '1.0.8'
     materialDialogsVersion  = '0.8.5.0'
     sqlbriteVersion         = '0.4.0'
     gsonVersion             = '2.4'
