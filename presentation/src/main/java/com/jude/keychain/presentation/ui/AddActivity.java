@@ -26,7 +26,7 @@ import com.jude.keychain.R;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.AddPresenter;
-import com.jude.keychain.presentation.widget.PaddingStatusBbarFrameLayout;
+import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
 import com.jude.utils.JUtils;
 
 import butterknife.Bind;
@@ -53,7 +53,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.toolbar_Container)
-    PaddingStatusBbarFrameLayout toolbarContainer;
+    PaddingStatusBarFrameLayout toolbarContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
