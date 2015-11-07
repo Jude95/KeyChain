@@ -64,6 +64,13 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
     public void setData(KeyEntity data) {
         super.setData(data);
         this.data = data;
+        int color = com.jude.keychain.domain.value.Color.getColorByType(data.getType());
+        toolbar.setBackgroundColor(color);
+        appbar.setBackgroundColor(color);
+        collapsingToolbar.setContentScrimColor(color);
+        collapsingToolbar.setBackgroundColor(color);
+        collapsingToolbar.setStatusBarScrimColor(color);
+
         collapsingToolbar.setTitle(data.getName());
         account.setText(data.getAccount());
         password.setText(data.getPassword());

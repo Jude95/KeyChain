@@ -34,7 +34,7 @@ public enum Color {
         for (Color color : Color.values()) {
             if (color.type == type)return color.color;
         }
-        return android.graphics.Color.WHITE;
+        return android.graphics.Color.BLACK;
     }
 
     public static int getTypeByColor(int colorInt){

@@ -15,22 +15,34 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.jude.beam.bijection.RequiresPresenter;
 import com.jude.beam.expansion.list.BeamListActivity;
 import com.jude.beam.expansion.list.ListConfig;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.keychain.R;
 import com.jude.keychain.domain.entities.KeyEntity;
+import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.MainPresenter;
 import com.jude.keychain.presentation.viewholder.KeyViewHolder;
+import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.utils.JUtils;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 @RequiresPresenter(MainPresenter.class)
-public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
+        implements NavigationView.OnNavigationItemSelectedListener, ColorChooserDialog.ColorCallback {
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.toolbar_Container)
+    PaddingStatusBarFrameLayout toolbarContainer;
     private TextView mLastView;
     private FloatingActionButton mFabAdd;
+
     @Override
     protected ListConfig getConfig() {
         mLastView = new TextView(this);
@@ -39,7 +51,7 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
         return super.getConfig().setNoMoreView(mLastView);
     }
 
-    public void setCount(int count){
+    public void setCount(int count) {
         mLastView.setText(String.format(getString(R.string.total_format), count));
     }
 
@@ -51,7 +63,7 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ButterKnife.bind(this);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,10 +80,11 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        onColorSelection(null,Color.getColorByType(getPresenter().getColorType()));
     }
 
-    public void showDeleteSnackBar(){
-        final Snackbar snackbar = Snackbar.make(mFabAdd,R.string.delete_done,Snackbar.LENGTH_LONG);
+    public void showDeleteSnackBar() {
+        final Snackbar snackbar = Snackbar.make(mFabAdd, R.string.delete_done, Snackbar.LENGTH_LONG);
         snackbar.setAction(R.string.backout, v -> {
             getPresenter().unDelete();
             snackbar.dismiss();
@@ -110,11 +123,27 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.color) {
+            ColorChooserDialog dialog = new ColorChooserDialog.Builder(this, R.string.color_palette)
+                    .preselect(Color.Green.getColor())
+                    .allowUserColorInput(false)
+                    .customButton(R.string.all)
+                    .cancelButton(R.string.cancel)
+                    .doneButton(R.string.done)
+                    .customColors(Color.getColors(), null)
+                    .show();
+            
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onColorSelection(ColorChooserDialog colorChooserDialog, int i) {
+        getPresenter().setColorType(Color.getTypeByColor(i));
+        toolbar.setBackgroundColor(i);
+        toolbarContainer.setBackgroundColor(i);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -141,4 +170,6 @@ public class MainActivity extends BeamListActivity<MainPresenter,KeyEntity>
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

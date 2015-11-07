@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by zhuchenxi on 15/11/3.
  */
-public class KeyEntity implements Serializable{
+public class KeyEntity implements Serializable,Cloneable{
     private int id = -1;
     private String name;
     private String account;
@@ -70,4 +70,14 @@ public class KeyEntity implements Serializable{
         this.password = password;
     }
 
+    @Override
+    public KeyEntity clone() {
+        KeyEntity o = null;
+        try {
+            o = (KeyEntity) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return o;
+    }
 }

@@ -83,7 +83,7 @@ public class KeyModel extends AbsModel {
         mKeyEntitiesSubject.onNext(mData);
     }
 
-    public Observable<List<KeyEntity>> readKeyEntryByType(final int type){
+    public Observable<List<KeyEntity>> readKeyEntry(){
         return mKeyEntitiesSubject;
     }
 
@@ -91,7 +91,7 @@ public class KeyModel extends AbsModel {
     public KeyEntity getKeyById(int id){
         for (KeyEntity keyEntity : mData) {
             if (keyEntity.getId() == id){
-                return keyEntity;
+                return keyEntity.clone();
             }
         }
         return null;

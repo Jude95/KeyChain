@@ -2,6 +2,7 @@ package com.jude.keychain.presentation.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import com.jude.keychain.R;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.AddPresenter;
+import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
 import com.jude.utils.JUtils;
 
 import butterknife.Bind;
@@ -48,6 +50,10 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     View type;
     @Bind(R.id.create)
     Button create;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.toolbar_Container)
+    PaddingStatusBarFrameLayout toolbarContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +69,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
                     .customColors(Color.getColors(), null)
                     .show();
         });
-        create.setOnClickListener(v->{
+        create.setOnClickListener(v -> {
             createPassword();
         });
     }
@@ -72,6 +78,8 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     public void setData(KeyEntity data) {
         super.setData(data);
         type.setBackgroundColor(Color.getColorByType(data.getType()));
+        onColorSelection(null,Color.getColorByType(data.getType()));
+
         name.getEditText().setText(data.getName());
         account.getEditText().setText(data.getAccount());
         password.getEditText().setText(data.getPassword());
@@ -117,9 +125,11 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     public void onColorSelection(ColorChooserDialog colorChooserDialog, int i) {
         getPresenter().setColorType(Color.getTypeByColor(i));
         type.setBackgroundColor(i);
+        toolbarContainer.setBackgroundColor(i);
+        toolbar.setBackgroundColor(i);
     }
 
-    private void createPassword(){
+    private void createPassword() {
         MaterialDialog dialog = new MaterialDialog.Builder(this)
                 .title(getString(R.string.create_password))
                 .customView(R.layout.dialog_password, false)
@@ -128,15 +138,15 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
                 .show();
         View view = dialog.getCustomView();
         Spinner spinner = $(view, R.id.spinner_mode);
-        EditText count = $(view,R.id.count);
-        TextView password = $(view,R.id.password);
-        ImageView refresh = $(view,R.id.refresh);
+        EditText count = $(view, R.id.count);
+        TextView password = $(view, R.id.password);
+        ImageView refresh = $(view, R.id.refresh);
         MDButton positiveAction = dialog.getActionButton(DialogAction.POSITIVE);
 
         spinner.setAdapter(new PasswordTypeAdapter());
         spinner.setSelection(0);
         refresh.setOnClickListener(v -> password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString()))));
-        positiveAction.setOnClickListener(v->{
+        positiveAction.setOnClickListener(v -> {
             this.password.getEditText().setText(password.getText());
             dialog.dismiss();
         });
@@ -144,7 +154,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
         password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString())));
     }
 
-    class PasswordTypeAdapter extends BaseAdapter{
+    class PasswordTypeAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
