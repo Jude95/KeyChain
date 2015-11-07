@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.jude.beam.model.AbsModel;
 import com.jude.keychain.data.tools.Recorder;
+import com.jude.keychain.data.tools.SeedManager;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.utils.JUtils;
 
@@ -55,6 +56,21 @@ public class KeyModel extends AbsModel {
     @Override
     protected void onAppCreate(Context ctx) {
         super.onAppCreate(ctx);
+    }
+
+    public boolean isFirst(){
+        return SeedManager.isEmpty();
+    }
+
+    public void setSeed(String seed){
+        SeedManager.setSeed(seed);
+    }
+
+    public boolean checkSeed(String seed){
+        return SeedManager.checkSeed(seed);
+    }
+
+    public void loadKey() throws Exception {
         mData = Recorder.read();
         if (mData == null)mData = new ArrayList<>();
         Collections.sort(mData, new Comparator<KeyEntity>() {
@@ -76,12 +92,16 @@ public class KeyModel extends AbsModel {
 
             @Override
             public void onNext(List<KeyEntity> keyEntities) {
-                JUtils.Log("Get" + keyEntities.size());
-                Recorder.save(keyEntities);
+                try {
+                    Recorder.save(keyEntities);
+                } catch (Exception e) {
+                    mKeyEntitiesSubject.onError(e);
+                }
             }
         });
         mKeyEntitiesSubject.onNext(mData);
     }
+
 
     public Observable<List<KeyEntity>> readKeyEntry(){
         return mKeyEntitiesSubject;

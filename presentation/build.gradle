@@ -37,6 +37,8 @@ dependencies {
     compile presentationDependencies.materialDialogsCore
     compile presentationDependencies.materialDialogsCommons
     compile presentationDependencies.ripple
+    compile presentationDependencies.jpinyin
     compile project(':data')
     compile project(':domain')
+    compile project(':patternlock')
 }

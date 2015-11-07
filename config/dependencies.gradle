@@ -10,6 +10,9 @@ ext {
     sqlbriteVersion         = '0.4.0'
     gsonVersion             = '2.4'
     rippleVersion           = '1.0.2'
+    jpinyinVersion          = '1.0'
+
+
     //libraries dependencies
     presentationDependencies = [
             appcompat           : "com.android.support:appcompat-v7:${supportLibraryVersion}",
@@ -22,6 +25,7 @@ ext {
             utils               : "com.jude:utils:${utilsVersion}",
             materialDialogsCommons     : "com.afollestad.material-dialogs:commons:${materialDialogsVersion}@aar",
             materialDialogsCore     : "com.afollestad.material-dialogs:core:${materialDialogsVersion}@aar",
+            jpinyin             : "com.github.stuxuhai:jpinyin:${jpinyinVersion}"
     ]
 
     dataDependencies = [

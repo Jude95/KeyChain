@@ -3,6 +3,7 @@ package com.jude.keychain.presentation.presenter;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.jude.beam.expansion.list.BeamListActivityPresenter;
 import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.entities.KeyEntity;
@@ -10,10 +11,12 @@ import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.ui.KeyDetailActivity;
 import com.jude.keychain.presentation.ui.MainActivity;
 
-import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by zhuchenxi on 15/11/3.
@@ -23,7 +26,6 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     public static final int REQUEST_ADD = 1002;
 
     private int mType = 0;
-    private List<KeyEntity> mData;
     @Override
     protected void onCreateView(MainActivity view) {
         super.onCreateView(view);
@@ -37,10 +39,21 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     }
 
     public void search(String key){
+        if (key.isEmpty()){
+            onRefresh();
+            return;
+        }
         KeyModel.getInstance().readKeyEntry()
                 .doOnNext(keyEntities -> getView().setCount(keyEntities.size()))
-                .doOnNext(keyEntities1 -> mData = keyEntities1)
-                .doOnNext(keyEntities -> Collections.sort(keyEntities, Collator.getInstance(java.util.Locale.CHINA)))
+                .flatMap(new Func1<List<KeyEntity>, Observable<List<KeyEntity>>>() {
+                    @Override
+                    public Observable<List<KeyEntity>> call(List<KeyEntity> keyEntities) {
+                        return Observable.from(keyEntities)
+                                .filter(keyEntity -> (keyEntity.getName().toLowerCase().contains(key.toLowerCase())
+                                        ||PinyinHelper.getShortPinyin(keyEntity.getName()).contains(key.toLowerCase())))
+                                .toList();
+                    }
+                })
                 .unsafeSubscribe(getRefreshSubscriber());
     }
 
@@ -48,21 +61,20 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     public void onRefresh() {
         KeyModel.getInstance().readKeyEntry()
                 .doOnNext(keyEntities -> getView().setCount(keyEntities.size()))
-                .doOnNext(keyEntities1 -> mData = keyEntities1)
                 .doOnNext(keyEntities -> Collections.sort(keyEntities, new Comparator<KeyEntity>() {
                     @Override
                     public int compare(KeyEntity lhs, KeyEntity rhs) {
-                        int delta1 = lhs.getType()-mType;
-                        if (delta1>0){
-                            delta1+= Color.values().length;
-                            delta1*=-1;
+                        int delta1 = lhs.getType() - mType;
+                        if (delta1 > 0) {
+                            delta1 += Color.values().length;
+                            delta1 *= -1;
                         }
-                        int delta2 = rhs.getType()-mType;
-                        if (delta2>0){
-                            delta2+= Color.values().length;
-                            delta2*=-1;
+                        int delta2 = rhs.getType() - mType;
+                        if (delta2 > 0) {
+                            delta2 += Color.values().length;
+                            delta2 *= -1;
                         }
-                        return delta2-delta1;
+                        return delta2 - delta1;
                     }
                 }))
                 .unsafeSubscribe(getRefreshSubscriber());

@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -46,6 +47,10 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
     TextView note;
     @Bind(R.id.time)
     TextView time;
+    @Bind(R.id.account_container)
+    LinearLayout accountContainer;
+    @Bind(R.id.password_container)
+    LinearLayout passwordContainer;
 
     private KeyEntity data;
 
@@ -60,11 +65,11 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
             i.putExtra("id", data.getId());
             startActivity(i);
         });
-        account.setOnClickListener(v -> new MaterialDialog.Builder(this)
+        accountContainer.setOnClickListener(v -> new MaterialDialog.Builder(this)
                 .items(new String[]{v.getContext().getString(R.string.copy_account)})
                 .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(data.getAccount()))
                 .show());
-        password.setOnClickListener(v -> new MaterialDialog.Builder(this)
+        passwordContainer.setOnClickListener(v -> new MaterialDialog.Builder(this)
                 .items(new String[]{v.getContext().getString(R.string.copy_password)})
                 .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(data.getPassword()))
                 .show());
@@ -100,7 +105,7 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
 
             new MaterialDialog.Builder(this)
                     .title(R.string.delete)
-                    .content(String.format(getString(R.string.confirm_format),data.getName()))
+                    .content(String.format(getString(R.string.confirm_format), data.getName()))
                     .positiveText(R.string.delete)
                     .negativeText(R.string.cancel)
                     .positiveColor(Color.RED)

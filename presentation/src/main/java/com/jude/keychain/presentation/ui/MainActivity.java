@@ -133,6 +133,9 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
                 return false;
             }
         });
+        search.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) search.setIconified(!hasFocus);
+        });
         return true;
     }
 

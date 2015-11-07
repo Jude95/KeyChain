@@ -13,16 +13,23 @@ import java.util.List;
 public class Recorder {
 
     @Nullable
-    public static List<KeyEntity> read(){
-        return Encryptor.from(JUtils.getSharedPreference().getString("data", ""));
+    public static List<KeyEntity> read() {
+        try {
+            return Encryptor.from(JUtils.getSharedPreference().getString("data", ""),SeedManager.getSeed());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static void save(List<KeyEntity> data){
-        String content = Encryptor.to(data);
+    public static void save(List<KeyEntity> data) {
+        String content = null;
+        try {
+            content = Encryptor.to(data, SeedManager.getSeed());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         JUtils.getSharedPreference().edit().putString("data",content).apply();
     }
-
-
-
 
 }

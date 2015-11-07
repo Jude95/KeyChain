@@ -17,6 +17,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/account_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
@@ -59,6 +60,7 @@
                 android:layout_marginLeft="72dp"/>
 
             <LinearLayout
+                android:id="@+id/password_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
