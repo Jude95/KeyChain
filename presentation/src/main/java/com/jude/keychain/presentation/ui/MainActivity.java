@@ -25,7 +25,7 @@ import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.MainPresenter;
 import com.jude.keychain.presentation.viewholder.KeyViewHolder;
-import com.jude.keychain.presentation.widget.PaddingStatusbarFrameLayout;
+import com.jude.keychain.presentation.widget.PaddingStatusBbarFrameLayout;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.utils.JUtils;
 
@@ -39,7 +39,7 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.toolbar_Container)
-    PaddingStatusbarFrameLayout toolbarContainer;
+    PaddingStatusBbarFrameLayout toolbarContainer;
     private TextView mLastView;
     private FloatingActionButton mFabAdd;
 

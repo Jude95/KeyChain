@@ -10,18 +10,18 @@ import com.jude.utils.JUtils;
 /**
  * Created by zhuchenxi on 15/11/7.
  */
-public class PaddingStatusbarFrameLayout extends FrameLayout{
-    public PaddingStatusbarFrameLayout(Context context) {
+public class PaddingStatusBbarFrameLayout extends FrameLayout{
+    public PaddingStatusBbarFrameLayout(Context context) {
         super(context);
         init();
     }
 
-    public PaddingStatusbarFrameLayout(Context context, AttributeSet attrs) {
+    public PaddingStatusBbarFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public PaddingStatusbarFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PaddingStatusBbarFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
