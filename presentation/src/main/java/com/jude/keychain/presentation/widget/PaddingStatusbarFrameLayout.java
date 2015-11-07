@@ -13,14 +13,17 @@ import com.jude.utils.JUtils;
 public class PaddingStatusbarFrameLayout extends FrameLayout{
     public PaddingStatusbarFrameLayout(Context context) {
         super(context);
+        init();
     }
 
     public PaddingStatusbarFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public PaddingStatusbarFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
     }
 
     private void init(){
