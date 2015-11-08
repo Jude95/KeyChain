@@ -176,11 +176,12 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_passoword) {
+            startActivity(new Intent(this,SetLockActivity.class));
+            finish();
+        } else if (id == R.id.nav_export) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_import) {
 
         } else if (id == R.id.nav_manage) {
 

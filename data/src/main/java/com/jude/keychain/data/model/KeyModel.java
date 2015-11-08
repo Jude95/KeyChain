@@ -177,6 +177,9 @@ public class KeyModel extends AbsModel {
 
     public String createKey(int type,int count){
         Random random = new Random(System.nanoTime());
+        if (count<=0||count>100){
+            return "";
+        }
         String key = "";
         for (int i = 0; i < count; i++) {
             char cur = '0';

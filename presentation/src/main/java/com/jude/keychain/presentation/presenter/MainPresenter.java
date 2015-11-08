@@ -2,6 +2,7 @@ package com.jude.keychain.presentation.presenter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.jude.beam.expansion.list.BeamListActivityPresenter;
@@ -26,6 +27,17 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     public static final int REQUEST_ADD = 1002;
 
     private int mType = 0;
+
+    @Override
+    protected void onCreate(MainActivity view, Bundle savedState) {
+        super.onCreate(view, savedState);
+        try {
+            KeyModel.getInstance().loadKey();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onCreateView(MainActivity view) {
         super.onCreateView(view);

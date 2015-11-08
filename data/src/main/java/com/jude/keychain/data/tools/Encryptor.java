@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jude.keychain.domain.entities.KeyEntity;
+import com.jude.utils.JUtils;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
@@ -34,7 +36,7 @@ public class Encryptor {
 
     private static byte[] getRawKey(byte[] seed) throws Exception {
         KeyGenerator kgen = KeyGenerator.getInstance("AES");
-        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG", "Crypto");
         sr.setSeed(seed);
         kgen.init(128, sr); // 192 and 256 bits may not be available
         SecretKey skey = kgen.generateKey();
@@ -46,7 +48,7 @@ public class Encryptor {
     private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception {
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+        cipher.init(Cipher.ENCRYPT_MODE, skeySpec,new IvParameterSpec(new byte[cipher.getBlockSize()]));
         byte[] encrypted = cipher.doFinal(clear);
         return encrypted;
     }
@@ -54,7 +56,7 @@ public class Encryptor {
     private static byte[] decrypt(byte[] raw, byte[] encrypted) throws Exception {
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.DECRYPT_MODE, skeySpec);
+        cipher.init(Cipher.DECRYPT_MODE, skeySpec,new IvParameterSpec(new byte[cipher.getBlockSize()]));
         byte[] decrypted = cipher.doFinal(encrypted);
         return decrypted;
     }
@@ -90,7 +92,9 @@ public class Encryptor {
 
     @Nullable
     public static ArrayList<KeyEntity> from(String source,String seed) throws Exception {
+        JUtils.Log("Encrypted Data:"+source);
         String json = decrypt(seed,source);
+        JUtils.Log("Decrypted Data:"+json);
         try {
             return new Gson().fromJson(json, new TypeToken<ArrayList<KeyEntity>>(){}.getType());
         }catch (Exception e){

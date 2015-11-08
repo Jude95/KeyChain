@@ -23,24 +23,34 @@ public class SeedManager {
 
     //用种子去解密校验码。如果解密出来为纯数字。则为正确。
     public static boolean checkSeed(String seed){
-        String checkString = "";
+        String checkString = JUtils.getSharedPreference().getString("checkString","");
+        JUtils.Log("Encrypted Check:"+checkString);
         try {
-            checkString = Encryptor.decrypt(seed,JUtils.getSharedPreference().getString("checkString",""));
+            checkString = Encryptor.decrypt(seed,checkString);
         } catch (Exception e) {
             e.printStackTrace();
+            checkString = "Error";
         }
-        return TextUtils.isDigitsOnly(checkString);
+        JUtils.Log("Decrypted Check:"+checkString);
+        if (TextUtils.isDigitsOnly(checkString)){
+            mSeed = seed;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     //用种子去加密随机生成的纯数字校验码，并保存
     public static void setSeed(String seed){
         mSeed = seed;
-        String mCheckString = new Random().nextInt()+"";
+        String mCheckString = Math.abs(new Random().nextInt())+"";
+        JUtils.Log("Check:"+mCheckString);
         try {
             mCheckString = Encryptor.encrypt(seed,mCheckString);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        JUtils.Log("Encrypted Check:"+mCheckString);
         JUtils.getSharedPreference().edit().putString("checkString", mCheckString).apply();
     }
 

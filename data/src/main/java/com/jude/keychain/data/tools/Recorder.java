@@ -14,8 +14,9 @@ public class Recorder {
 
     @Nullable
     public static List<KeyEntity> read() {
+        String resource = JUtils.getSharedPreference().getString("data", "");
         try {
-            return Encryptor.from(JUtils.getSharedPreference().getString("data", ""),SeedManager.getSeed());
+            return Encryptor.from(resource,SeedManager.getSeed());
         } catch (Exception e) {
             e.printStackTrace();
         }

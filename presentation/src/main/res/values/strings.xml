@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KeyChain</string>
+    <string name="app_name">密钥盒子</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -33,6 +33,13 @@
     <string name="color">颜色</string>
     <string name="all">全部</string>
     <string name="search">搜索</string>
+    <string name="patter_error">图案错误</string>
+    <string name="seed_set">请设置新密码</string>
+    <string name="seed_comfirm">请再次确认密码</string>
+    <string name="seed_check">请输入原密码</string>
+    <string name="seed_change">更换密码</string>
+    <string name="seed_export">导出密码</string>
+    <string name="seed_import">导入密钥</string>
     <string-array name="password_type">
         <item>数字字母</item>
         <item>数字字母大小写</item>

@@ -2,13 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_camara" android:icon="@android:drawable/ic_menu_camera"
-            android:title="Import" />
-        <item android:id="@+id/nav_gallery" android:icon="@android:drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item android:id="@+id/nav_slideshow" android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item android:id="@+id/nav_manage" android:icon="@android:drawable/ic_menu_manage"
+        <item
+            android:id="@+id/nav_passoword"
+            android:icon="@drawable/menu_password"
+            android:title="@string/seed_change" />
+
+        <item
+            android:id="@+id/nav_import"
+            android:icon="@drawable/menu_internal"
+            android:title="@string/seed_import" />
+
+        <item
+            android:id="@+id/nav_export"
+            android:icon="@drawable/menu_external"
+            android:title="@string/seed_export" />
+
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@android:drawable/ic_menu_manage"
             android:title="Tools" />
     </group>
 

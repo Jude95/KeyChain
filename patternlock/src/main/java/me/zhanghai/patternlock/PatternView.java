@@ -31,6 +31,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -270,9 +271,9 @@ public class PatternView extends View {
 
         mAspect = a.getInt(R.styleable.PatternView_aspect, ASPECT_SQUARE);
 
-        int regularColor = a.getColor(R.styleable.PatternView_regularColor, 0);
-        int errorColor = a.getColor(R.styleable.PatternView_errorColor, 0);
-        int successColor = a.getColor(R.styleable.PatternView_successColor, 0);
+        int regularColor = a.getColor(R.styleable.PatternView_regularColor, Color.BLUE);
+        int errorColor = a.getColor(R.styleable.PatternView_errorColor, Color.RED);
+        int successColor = a.getColor(R.styleable.PatternView_successColor, Color.GREEN);
         mRegularColorFilter = new PorterDuffColorFilter(regularColor, PorterDuff.Mode.SRC_ATOP);
         mErrorColorFilter = new PorterDuffColorFilter(errorColor, PorterDuff.Mode.SRC_ATOP);
         mSuccessColorFilter = new PorterDuffColorFilter(successColor, PorterDuff.Mode.SRC_ATOP);
@@ -287,11 +288,11 @@ public class PatternView extends View {
         mPathPaint.setStrokeCap(Paint.Cap.ROUND);
 
         // lots of bitmaps!
-        mBitmapDotDefault = getBitmap(a, R.styleable.PatternView_dotDrawableDefault);
-        mBitmapDotTouched = getBitmap(a, R.styleable.PatternView_dotDrawableTouched);
-        mBitmapCircleDefault = getBitmap(a, R.styleable.PatternView_circleDrawableDefault);
-        mBitmapCircle = getBitmap(a, R.styleable.PatternView_circleDrawable);
-        mBitmapArrowUp = getBitmap(a, R.styleable.PatternView_arrowUpDrawable);
+        mBitmapDotDefault = getBitmap(a, R.styleable.PatternView_dotDrawableDefault,R.drawable.pl_patternview_dot_default);
+        mBitmapDotTouched = getBitmap(a, R.styleable.PatternView_dotDrawableTouched,R.drawable.pl_patternview_dot_touched);
+        mBitmapCircleDefault = getBitmap(a, R.styleable.PatternView_circleDrawableDefault,R.drawable.pl_patternview_circle_default_alpha);
+        mBitmapCircle = getBitmap(a, R.styleable.PatternView_circleDrawable,R.drawable.pl_patternview_circle_alpha);
+        mBitmapArrowUp = getBitmap(a, R.styleable.PatternView_arrowUpDrawable,R.drawable.pl_patternview_arrow_alpha);
         // bitmaps have the size of the largest bitmap in this group
         final Bitmap bitmaps[] = {mBitmapDotDefault, mBitmapDotTouched, mBitmapCircleDefault,
                 mBitmapCircle};
@@ -318,8 +319,8 @@ public class PatternView extends View {
         return mCellStates;
     }
 
-    private Bitmap getBitmap(TypedArray a, int index) {
-        return BitmapFactory.decodeResource(getContext().getResources(), a.getResourceId(index, 0));
+    private Bitmap getBitmap(TypedArray a, int index,int defaultValue) {
+        return BitmapFactory.decodeResource(getContext().getResources(), a.getResourceId(index, defaultValue));
     }
 
     /**
@@ -562,8 +563,19 @@ public class PatternView extends View {
                     !mPatternDrawLookup[fillInGapCell.row][fillInGapCell.column]) {
                 addCellToPattern(fillInGapCell);
             }
+
+
+            final int patternSize = mPattern.size();
+
+            if (patternSize == 0) {
+                mPatternInProgress = true;
+                mDisplayMode = DisplayMode.Correct;
+                notifyPatternStarted();
+            }
+
             addCellToPattern(cell);
             performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
             return cell;
         }
         return null;
@@ -701,10 +713,7 @@ public class PatternView extends View {
             final float y = i < historySize ? event.getHistoricalY(i) : event.getY();
             Cell hitCell = detectAndAddHit(x, y);
             final int patternSize = mPattern.size();
-            if (hitCell != null && patternSize == 1) {
-                mPatternInProgress = true;
-                notifyPatternStarted();
-            }
+
             // note current x and y for rubber banding of in progress patterns
             final float dx = Math.abs(x - mInProgressX);
             final float dy = Math.abs(y - mInProgressY);
@@ -778,9 +787,6 @@ public class PatternView extends View {
         final float y = event.getY();
         final Cell hitCell = detectAndAddHit(x, y);
         if (hitCell != null) {
-            mPatternInProgress = true;
-            mDisplayMode = DisplayMode.Correct;
-            notifyPatternStarted();
         } else if (mPatternInProgress) {
             mPatternInProgress = false;
             notifyPatternCleared();

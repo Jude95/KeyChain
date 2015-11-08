@@ -3,16 +3,21 @@ package com.jude.keychain.presentation.ui;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -140,17 +145,56 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
         Spinner spinner = $(view, R.id.spinner_mode);
         EditText count = $(view, R.id.count);
         TextView password = $(view, R.id.password);
-        ImageView refresh = $(view, R.id.refresh);
+        View refresh = $(view, R.id.refresh);
         MDButton positiveAction = dialog.getActionButton(DialogAction.POSITIVE);
 
         spinner.setAdapter(new PasswordTypeAdapter());
         spinner.setSelection(0);
-        refresh.setOnClickListener(v -> password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString()))));
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString())));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        refresh.setOnClickListener(v -> {
+            Animation animation = new RotateAnimation(0f,360f,Animation.RELATIVE_TO_SELF,
+                    0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+            animation.setDuration(500);
+            animation.setInterpolator(new AccelerateDecelerateInterpolator());
+            v.startAnimation(animation);
+            password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString())));
+        });
+        count.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString())));
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
+
         positiveAction.setOnClickListener(v -> {
             this.password.getEditText().setText(password.getText());
             dialog.dismiss();
         });
-
         password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString())));
     }
 
