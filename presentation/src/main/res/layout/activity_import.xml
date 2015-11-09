@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
-            android:text="将密钥串加密文本粘贴到这里，输入密码导入密钥，会自动合并相同密钥。"
+            android:text="@string/import_info"
             android:textColor="@color/white"
             android:gravity="center"
             android:layout_gravity="center"

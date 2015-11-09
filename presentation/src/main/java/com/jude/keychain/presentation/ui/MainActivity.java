@@ -183,8 +183,6 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
             startActivity(new Intent(this, ExportActivity.class));
         } else if (id == R.id.nav_import) {
             startActivity(new Intent(this, ImportActivity.class));
-        } else if (id == R.id.nav_manage) {
-
         } else if (id == R.id.nav_about) {
             startActivity(new Intent(this,AboutActivity.class));
         } else if (id == R.id.nav_help) {

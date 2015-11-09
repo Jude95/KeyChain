@@ -25,7 +25,7 @@
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp"
-        tools:text="图案错误"/>
+        tools:text="@string/error_pattern"/>
 
     <FrameLayout
         android:id="@+id/pattern_container"

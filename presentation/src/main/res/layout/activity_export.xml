@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
-            android:text="将所有密钥加密存至粘贴板，你可以随意放置，没有密码别人无法解读。"
+            android:text="@string/export_info"
             android:textColor="@color/white"
             android:gravity="center"
             android:layout_gravity="center"
