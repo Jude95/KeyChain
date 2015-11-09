@@ -566,7 +566,6 @@ public class PatternView extends View {
 
 
             final int patternSize = mPattern.size();
-
             if (patternSize == 0) {
                 mPatternInProgress = true;
                 mDisplayMode = DisplayMode.Correct;

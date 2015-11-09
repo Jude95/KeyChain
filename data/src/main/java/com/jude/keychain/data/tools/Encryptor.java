@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jude.keychain.domain.entities.KeyEntity;
-import com.jude.utils.JUtils;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -92,9 +91,7 @@ public class Encryptor {
 
     @Nullable
     public static ArrayList<KeyEntity> from(String source,String seed) throws Exception {
-        JUtils.Log("Encrypted Data:"+source);
         String json = decrypt(seed,source);
-        JUtils.Log("Decrypted Data:"+json);
         try {
             return new Gson().fromJson(json, new TypeToken<ArrayList<KeyEntity>>(){}.getType());
         }catch (Exception e){

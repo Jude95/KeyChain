@@ -5,6 +5,7 @@ package com.jude.keychain.domain.value;
  */
 public enum Color {
 
+
     Green("#4CAF50",0),
     Purple("#9C27B0",1),
     Blue("#2196F3",2),

@@ -107,6 +107,10 @@ public class KeyModel extends AbsModel {
         return mKeyEntitiesSubject;
     }
 
+    public List<KeyEntity> getData(){
+        return mData;
+    }
+
     @Nullable
     public KeyEntity getKeyById(int id){
         for (KeyEntity keyEntity : mData) {
@@ -150,6 +154,19 @@ public class KeyModel extends AbsModel {
         mKeyEntitiesSubject.onNext(mData);
     }
 
+    public void add(List<KeyEntity> data){
+        out:for (KeyEntity newEntity : data) {
+            for (KeyEntity entity : mData) {
+                if (newEntity.equals(entity)){
+                    continue out;
+                }
+            }
+            newEntity.setId(getNewId());
+            mData.add(newEntity);
+        }
+        mKeyEntitiesSubject.onNext(mData);
+    }
+
     public void delete(int id){
         for (KeyEntity keyEntity : new ArrayList<>(mData)) {
             if (keyEntity.getId() == id){
@@ -172,6 +189,14 @@ public class KeyModel extends AbsModel {
             id = mData.get(mData.size() - 1).getId() + 1;
         }
         return id;
+    }
+
+    public int getDefaultType(){
+        return JUtils.getSharedPreference().getInt("Type",2);
+    }
+
+    public void setDefaultType(int type){
+        JUtils.getSharedPreference().edit().putInt("Type",type).apply();
     }
 
 

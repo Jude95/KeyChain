@@ -28,14 +28,20 @@ import com.afollestad.materialdialogs.internal.MDButton;
 import com.jude.beam.bijection.RequiresPresenter;
 import com.jude.beam.expansion.data.BeamDataActivity;
 import com.jude.keychain.R;
+import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.AddPresenter;
 import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
 import com.jude.utils.JUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by Mr.Jude on 2015/11/3.
@@ -59,6 +65,8 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     Toolbar toolbar;
     @Bind(R.id.toolbar_Container)
     PaddingStatusBarFrameLayout toolbarContainer;
+    @Bind(R.id.select)
+    Button select;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +85,16 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
         create.setOnClickListener(v -> {
             createPassword();
         });
+        select.setOnClickListener(v->{
+            showAccountList();
+        });
     }
 
     @Override
     public void setData(KeyEntity data) {
         super.setData(data);
         type.setBackgroundColor(Color.getColorByType(data.getType()));
-        onColorSelection(null,Color.getColorByType(data.getType()));
+        onColorSelection(null, Color.getColorByType(data.getType()));
 
         name.getEditText().setText(data.getName());
         account.getEditText().setText(data.getAccount());
@@ -162,8 +173,8 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
             }
         });
         refresh.setOnClickListener(v -> {
-            Animation animation = new RotateAnimation(0f,360f,Animation.RELATIVE_TO_SELF,
-                    0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+            Animation animation = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF,
+                    0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             animation.setDuration(500);
             animation.setInterpolator(new AccelerateDecelerateInterpolator());
             v.startAnimation(animation);
@@ -197,6 +208,39 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
         });
         password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString())));
     }
+
+
+    private void showAccountList(){
+        ArrayList<String> arrayList = new ArrayList<>();
+        KeyModel.getInstance().readKeyEntry()
+                .first()
+                .flatMap(new Func1<List<KeyEntity>, Observable<List<KeyEntity>>>() {
+                    @Override
+                    public Observable<List<KeyEntity>> call(List<KeyEntity> keyEntities) {
+                        return Observable.from(keyEntities)
+                                .doOnNext(keyEntity -> {
+                                    JUtils.Log("I Get");
+                                    for (String account : arrayList) {
+                                        if (account.equals(keyEntity.getAccount())) {
+                                            return;
+                                        }
+                                    }
+                                    arrayList.add(keyEntity.getAccount());
+                                })
+                                .toList();
+                    }
+                })
+                .map(keyEntities -> arrayList)
+                .map(strings -> strings.toArray(new String[strings.size()]))
+                .subscribe(strings -> {
+                    new MaterialDialog.Builder(this)
+                            .items(strings)
+                            .itemsCallback((materialDialog, view, i, charSequence) -> account.getEditText().setText(arrayList.get(i)))
+                            .show();
+                });
+
+    }
+
 
     class PasswordTypeAdapter extends BaseAdapter {
 

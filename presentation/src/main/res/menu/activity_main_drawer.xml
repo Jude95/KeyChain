@@ -3,7 +3,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_passoword"
+            android:id="@+id/nav_password"
             android:icon="@drawable/menu_password"
             android:title="@string/seed_change" />
 
@@ -23,13 +23,17 @@
             android:title="Tools" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
-                android:title="Share" />
-            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
-                android:title="Send" />
+    <item android:title="@string/nav_more">
+        <menu android:checkableBehavior="single">
+            <item android:id="@+id/nav_about"
+                android:icon="@drawable/nav_about"
+                android:title="@string/nav_about" />
+            <item android:id="@+id/nav_help"
+                android:icon="@drawable/nav_help"
+                android:title="@string/nav_help" />
+            <item android:id="@+id/nav_protocol"
+                android:icon="@drawable/nav_protocol"
+                android:title="@string/nav_protocol" />
         </menu>
     </item>
-
 </menu>

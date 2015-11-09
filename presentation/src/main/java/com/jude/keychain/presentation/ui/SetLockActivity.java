@@ -1,5 +1,6 @@
 package com.jude.keychain.presentation.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
@@ -85,7 +86,7 @@ public class SetLockActivity extends BeamBaseActivity<SetLockPresenter> {
 
     public void setRepeatInput(){
         status = 2;
-        hint.setText(R.string.seed_comfirm);
+        hint.setText(R.string.seed_confirm);
         patternView.clearPattern();
         patternView.setInputEnabled(true);
 
@@ -115,7 +116,7 @@ public class SetLockActivity extends BeamBaseActivity<SetLockPresenter> {
                 hint.setText(R.string.seed_set);
                 break;
             case REPEAT:
-                hint.setText(R.string.seed_comfirm);
+                hint.setText(R.string.seed_confirm);
                 break;
             case CONFIRM:
                 hint.setText(R.string.seed_check);
@@ -127,5 +128,12 @@ public class SetLockActivity extends BeamBaseActivity<SetLockPresenter> {
 
     private int getNumberByPosition(int column, int row) {
         return row * 3 + column + 1;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this,MainActivity.class));
+        finish();
     }
 }

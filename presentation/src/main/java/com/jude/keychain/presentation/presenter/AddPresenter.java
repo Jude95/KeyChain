@@ -18,7 +18,10 @@ public class AddPresenter extends BeamDataActivityPresenter<AddActivity,KeyEntit
         super.onCreate(view, savedState);
         int id = getView().getIntent().getIntExtra("id",-1);
         data = KeyModel.getInstance().getKeyById(id);
-        if (data == null)data = new KeyEntity();
+        if (data == null){
+            data = new KeyEntity();
+            data.setType(KeyModel.getInstance().getDefaultType());
+        }
         publishObject(data);
     }
 

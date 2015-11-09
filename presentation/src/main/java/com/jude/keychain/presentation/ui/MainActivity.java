@@ -176,18 +176,20 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_passoword) {
+        if (id == R.id.nav_password) {
             startActivity(new Intent(this,SetLockActivity.class));
             finish();
         } else if (id == R.id.nav_export) {
-
+            startActivity(new Intent(this, ExportActivity.class));
         } else if (id == R.id.nav_import) {
-
+            startActivity(new Intent(this, ImportActivity.class));
         } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_about) {
+            startActivity(new Intent(this,AboutActivity.class));
+        } else if (id == R.id.nav_help) {
+            startActivity(new Intent(this,HelpActivity.class));
+        } else if (id == R.id.nav_protocol) {
 
         }
 

@@ -26,7 +26,14 @@
         </activity>
 
         <activity android:name=".presentation.ui.SetLockActivity"/>
-
+        <activity android:name=".presentation.ui.ExportActivity"
+            android:label="@string/seed_export"/>
+        <activity android:name=".presentation.ui.ImportActivity"
+            android:label="@string/seed_import"/>
+        <activity android:name=".presentation.ui.AboutActivity"
+            android:label="@string/nav_about"/>
+        <activity android:name=".presentation.ui.HelpActivity"
+            android:label="@string/nav_help"/>
     </application>
 
 </manifest>

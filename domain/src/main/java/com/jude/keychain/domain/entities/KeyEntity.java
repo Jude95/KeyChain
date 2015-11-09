@@ -71,6 +71,17 @@ public class KeyEntity implements Serializable,Cloneable{
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o instanceof KeyEntity){
+            return name.equals(((KeyEntity) o).name)
+                    &&account.equals(((KeyEntity) o).account)
+                    &&password.equals(((KeyEntity) o).password)
+                    &&note.equals(((KeyEntity) o).note);
+        }
+        return false;
+    }
+
+    @Override
     public KeyEntity clone() {
         KeyEntity o = null;
         try {

@@ -40,21 +40,28 @@ public class LockActivity extends BeamBaseActivity<LockPresenter> {
         patternView.setOnPatternListener(new PatternView.OnPatternListener() {
             @Override
             public void onPatternStart() {
+                JUtils.Log("onPatternStart");
                 mSeed = "";
             }
 
             @Override
             public void onPatternCleared() {
+                JUtils.Log("onPatternCleared");
+
             }
 
             @Override
             public void onPatternCellAdded(List<PatternView.Cell> pattern) {
+                JUtils.Log("onPatternCellAdded");
+
                 PatternView.Cell cell = pattern.get(pattern.size() - 1);
                 mSeed += getNumberByPosition(cell.getColumn(), cell.getRow());
             }
 
             @Override
             public void onPatternDetected(List<PatternView.Cell> pattern) {
+                JUtils.Log("onPatternDetected");
+
                 JUtils.Log(mSeed);
                 getPresenter().checkSeed(mSeed);
             }
@@ -76,9 +83,15 @@ public class LockActivity extends BeamBaseActivity<LockPresenter> {
         new Handler().postDelayed(this::clear, 1000);
     }
 
-    private void clear() {
+    public void clear() {
         hint.setText("");
         patternView.clearPattern();
+        patternView.setInputEnabled(true);
+    }
+
+    public void setTryDelay(int time){
+        patternView.setInputEnabled(false);
+        hint.setText(String.format(getString(R.string.error_overload),time));
     }
 
     private int getNumberByPosition(int column, int row) {

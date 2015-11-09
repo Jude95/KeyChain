@@ -35,11 +35,35 @@
     <string name="search">搜索</string>
     <string name="patter_error">图案错误</string>
     <string name="seed_set">请设置新密码</string>
-    <string name="seed_comfirm">请再次确认密码</string>
+    <string name="seed_confirm">请再次确认密码</string>
     <string name="seed_check">请输入原密码</string>
     <string name="seed_change">更换密码</string>
-    <string name="seed_export">导出密码</string>
+    <string name="seed_export">导出密钥</string>
     <string name="seed_import">导入密钥</string>
+    <string name="error_overload">错误过多请%d秒后尝试</string>
+    <string name="account_select">选取账号</string>
+    <string name="copy">复制到粘贴板</string>
+    <string name="content">加密文本</string>
+    <string name="copy_board">已复制到粘贴板</string>
+    <string name="error_export">导出失败</string>
+    <string name="error_data_empty">数据不能为空</string>
+    <string name="add_success">添加成功</string>
+    <string name="error_password">密码错误</string>
+    <string name="nav_more">更多</string>
+    <string name="nav_help">帮助</string>
+    <string name="nav_protocol">开源协议</string>
+    <string name="nav_about">关于</string>
+    <string name="help">
+        1.用途\n
+            \t\t数据安全非常严重的现在，您需要高强度密钥与物理隔离于网络的密钥存储。密钥盒子目的就在此。您可以放心使用它保存您的账号。不用担心泄漏。可以使用颜色来进行密钥分组。\n\n
+        2.安全\n
+            \t\t密钥盒子没有申请任何权限，意味着它不能将您的密码上传网络，也不能存到您的SD卡。只能存于自己的私有本地数据库。而其他APP无Root权限均无法访问，有Root权限获取了也无法解密。\n\n
+        3.加密\n
+            \t\t密钥盒子使用AES(高级加密标准)算法进行加密，没有您的密钥破解需花数亿年。\n
+            \t\tAPP不会保存您的密钥，而是将启动时您输入的解锁密码作为密钥，而验证您的解锁密码则是直接尝试用它解密设置解锁密码时加密的特定文本。所以解锁密码也是同样安全的。\n\n
+        4.备份\n
+            \t\t安全考虑密钥盒子无法自动备份您的密钥，如果APP被删数据将消失。建议您每个一段时间就自己导出自己的密钥，可以随便发给朋友，存在电脑服务器上，没有密码任何人无法破解。\n\n
+    </string>
     <string-array name="password_type">
         <item>数字字母</item>
         <item>数字字母大小写</item>

@@ -26,7 +26,6 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     public static final int REQUEST_DETAIL = 1001;
     public static final int REQUEST_ADD = 1002;
 
-    private int mType = 0;
 
     @Override
     protected void onCreate(MainActivity view, Bundle savedState) {
@@ -76,12 +75,12 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
                 .doOnNext(keyEntities -> Collections.sort(keyEntities, new Comparator<KeyEntity>() {
                     @Override
                     public int compare(KeyEntity lhs, KeyEntity rhs) {
-                        int delta1 = lhs.getType() - mType;
+                        int delta1 = lhs.getType() - getColorType();
                         if (delta1 > 0) {
                             delta1 += Color.values().length;
                             delta1 *= -1;
                         }
-                        int delta2 = rhs.getType() - mType;
+                        int delta2 = rhs.getType() - getColorType();
                         if (delta2 > 0) {
                             delta2 += Color.values().length;
                             delta2 *= -1;
@@ -97,12 +96,12 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     }
 
     public void setColorType(int type){
-        this.mType = type;
+        KeyModel.getInstance().setDefaultType(type);
         onRefresh();
     }
 
     public int getColorType(){
-        return mType;
+        return KeyModel.getInstance().getDefaultType();
     }
 
     @Override

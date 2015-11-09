@@ -5,7 +5,10 @@
 
         <meta-data
             android:name="MODEL"
-            android:value="com.jude.keychain.data.model.KeyModel"
+            android:value="
+            com.jude.keychain.data.model.KeyModel,
+            com.jude.keychain.data.model.ImportModel
+            "
             />
     </application>
 
