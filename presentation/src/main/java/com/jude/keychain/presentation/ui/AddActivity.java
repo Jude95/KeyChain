@@ -219,7 +219,6 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
                     public Observable<List<KeyEntity>> call(List<KeyEntity> keyEntities) {
                         return Observable.from(keyEntities)
                                 .doOnNext(keyEntity -> {
-                                    JUtils.Log("I Get");
                                     for (String account : arrayList) {
                                         if (account.equals(keyEntity.getAccount())) {
                                             return;
