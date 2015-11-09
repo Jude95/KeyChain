@@ -26,5 +26,4 @@ dependencies {
     compile dataDependencies.gson
     compile dataDependencies.beam
     compile dataDependencies.utils
-    compile dataDependencies.sqlbrite
 }

@@ -34,6 +34,8 @@
             android:label="@string/nav_about"/>
         <activity android:name=".presentation.ui.HelpActivity"
             android:label="@string/nav_help"/>
+        <activity android:name=".presentation.ui.ProtocolActivity"
+            android:label="@string/nav_protocol"/>
     </application>
 
 </manifest>

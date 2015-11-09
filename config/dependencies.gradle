@@ -7,7 +7,6 @@ ext {
     butterKnife             = '7.0.1'
     utilsVersion            = '1.0.8'
     materialDialogsVersion  = '0.8.5.0'
-    sqlbriteVersion         = '0.4.0'
     gsonVersion             = '2.4'
     rippleVersion           = '1.0.2'
     jpinyinVersion          = '1.0'
@@ -32,10 +31,8 @@ ext {
             gson                : "com.google.code.gson:gson:${gsonVersion}",
             beam                : "com.jude:beam:${beamVersion}",
             utils               : "com.jude:utils:${utilsVersion}",
-            sqlbrite            : "com.squareup.sqlbrite:sqlbrite:${sqlbriteVersion}"
     ]
 
     domainDependencies = [
-            gson                : "com.google.code.gson:gson:${gsonVersion}"
     ]
 }

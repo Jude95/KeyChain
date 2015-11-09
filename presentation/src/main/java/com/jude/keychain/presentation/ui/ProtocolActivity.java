@@ -8,7 +8,7 @@ import com.jude.beam.expansion.BeamBaseActivity;
 import com.jude.keychain.R;
 import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.value.Color;
-import com.jude.keychain.presentation.presenter.HelpPresenter;
+import com.jude.keychain.presentation.presenter.ProtocolPresenter;
 import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
 
 import butterknife.Bind;
@@ -17,8 +17,8 @@ import butterknife.ButterKnife;
 /**
  * Created by Mr.Jude on 2015/11/9.
  */
-@RequiresPresenter(HelpPresenter.class)
-public class HelpActivity extends BeamBaseActivity<HelpPresenter> {
+@RequiresPresenter(ProtocolPresenter.class)
+public class ProtocolActivity extends BeamBaseActivity<ProtocolPresenter> {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.toolbar_Container)
@@ -27,7 +27,7 @@ public class HelpActivity extends BeamBaseActivity<HelpPresenter> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        setContentView(R.layout.activity_protocol);
         ButterKnife.bind(this);
         setColor();
     }

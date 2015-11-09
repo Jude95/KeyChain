@@ -64,6 +64,36 @@
         4.备份\n
             \t\t安全考虑密钥盒子无法自动备份您的密钥，如果APP被删数据将消失。建议您每个一段时间就自己导出自己的密钥，可以随便发给朋友，存在电脑服务器上，没有密码任何人无法破解。\n\n
     </string>
+    <string name="protocol">
+        APP开源于 https://github.com/Jude95/KeyChain\n\n
+
+        Copyright 2015 Jude.\n\n
+        Licensed under the Apache License, Version 2.0 (the "License");\n
+        you may not use this file except in compliance with the License.\n
+        You may obtain a copy of the License at\n
+
+           http://www.apache.org/licenses/LICENSE-2.0\n
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.\n\n
+
+        反正没人看，Apache Licence 2.0协议简要说明：\n
+        修改版本必须保持其原始版权声明；修改过的文件要标明改动。\n\n
+
+        开放源代码许可：\n
+        Beam:\nhttps://github.com/Jude95/Beam\n\n
+        SwipeBackHelper:\nhttps://github.com/Jude95/SwipeBackHelper\n\n
+        EasyRecyclerView:\nhttps://github.com/Jude95/EasyRecyclerView\n\n
+        Utils:\nhttps://github.com/Jude95/Utils\n\n
+        material-dialogs:\nhttps://github.com/afollestad/material-dialogs\n\n
+        gson:\nhttps://github.com/google/gson\n\n
+        material-ripple:\nhttps://github.com/balysv/material-ripple\n\n
+        jpinyin:\nhttps://github.com/stuxuhai/jpinyin\n\n
+        butterknife:\nhttps://github.com/JakeWharton/butterknife\n\n
+    </string>
     <string-array name="password_type">
         <item>数字字母</item>
         <item>数字字母大小写</item>

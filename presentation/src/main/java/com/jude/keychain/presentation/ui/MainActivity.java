@@ -190,7 +190,7 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         } else if (id == R.id.nav_help) {
             startActivity(new Intent(this,HelpActivity.class));
         } else if (id == R.id.nav_protocol) {
-
+            startActivity(new Intent(this,ProtocolActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
