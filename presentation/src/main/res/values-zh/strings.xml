@@ -21,7 +21,7 @@
     <string name="create_password">生成密码</string>
     <string name="empty">无</string>
     <string name="key_time">创建日期</string>
-    <string name="date_format">yyyy年MM月dd日 hh:mm</string>
+    <string name="date_format">yyyy年MM月dd日 HH:mm</string>
     <string name="total_format">一共%d条钥匙</string>
     <string name="delete">删除</string>
     <string name="error_input">输入错误</string>

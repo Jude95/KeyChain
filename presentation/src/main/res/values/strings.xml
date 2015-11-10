@@ -21,7 +21,7 @@
     <string name="create_password">Generate</string>
     <string name="empty">Empty</string>
     <string name="key_time">Created Time</string>
-    <string name="date_format">yyyy/MM/dd hh:mm</string>
+    <string name="date_format">yyyy/MM/dd HH:mm</string>
     <string name="total_format">%d Passwords All</string>
     <string name="delete">delete</string>
     <string name="error_input">Input Invalid</string>
