@@ -26,7 +26,7 @@
     <string name="delete">删除</string>
     <string name="error_input">输入错误</string>
     <string name="delete_done">已删除</string>
-    <string name="confirm_format">确认删除密钥 %s 吗!</string>
+    <string name="confirm_format">确认删除密钥 %s 吗?</string>
     <string name="backout">撤销</string>
     <string name="copy_account">复制账号</string>
     <string name="copy_password">复制密码</string>
@@ -57,7 +57,7 @@
         1.用途\n
             \t\t数据安全问题非常严重的现在，您需要高强度密钥与物理隔离于网络的密钥存储。密钥盒子目的就在此。您可以放心使用它保存您的账号。不用担心泄漏。可以使用颜色来进行密钥分组。\n\n
         2.安全\n
-            \t\t密钥盒子没有申请任何权限，意味着它无法将您的密码上传网络，也不能存到您的SD卡。只能存于自己的私有本地数据库。而其他APP无Root权限均无法访问，有Root权限获取了也无法解密。\n\n
+            \t\t密钥盒子没有申请任何权限，意味着它无法将您的密码上传网络，也不能存到您的SD卡。数据加密存储于自己的私有本地数据库。而其他APP无Root权限均无法访问，有Root权限获取了也无法解密。\n\n
         3.加密\n
             \t\t密钥盒子使用AES(高级加密标准)算法进行加密，没有加密密钥破解需花数亿年。\n
             \t\tAPP不会保存加密密钥，而是将启动时您输入的解锁密码作为加密密钥，而验证您的解锁密码则是直接尝试用它解密设置解锁密码时加密的特定文本。所以解锁密码也是同样安全的。\n\n
@@ -99,6 +99,9 @@
     <string name="error_pattern">图案错误</string>
     <string name="mode">模式</string>
     <string name="size">位数</string>
+    <string name="error_no_account">你还没有已存账号</string>
+    <string name="developer">开发者：Jude95</string>
+    <string name="contact">联系我：973829691@qq.com</string>
     <string-array name="password_type">
         <item>数字字母</item>
         <item>数字字母大小写</item>

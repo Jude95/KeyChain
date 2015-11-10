@@ -11,12 +11,14 @@ import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.ui.KeyDetailActivity;
 import com.jude.keychain.presentation.ui.MainActivity;
+import com.jude.utils.JUtils;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import rx.Observable;
+import rx.functions.Action1;
 import rx.functions.Func1;
 
 /**
@@ -41,6 +43,7 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     protected void onCreateView(MainActivity view) {
         super.onCreateView(view);
         getAdapter().setOnItemClickListener(position -> {
+            JUtils.Log("position:"+position);
             KeyEntity keyEntity = getAdapter().getItem(position);
             Intent i = new Intent(getView(), KeyDetailActivity.class);
             i.putExtra("id", keyEntity.getId());
@@ -54,14 +57,14 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
             onRefresh();
             return;
         }
-        KeyModel.getInstance().readKeyEntry()
+        KeyModel.getInstance().registerKeyEntry()
                 .doOnNext(keyEntities -> getView().setCount(keyEntities.size()))
                 .flatMap(new Func1<List<KeyEntity>, Observable<List<KeyEntity>>>() {
                     @Override
                     public Observable<List<KeyEntity>> call(List<KeyEntity> keyEntities) {
                         return Observable.from(keyEntities)
                                 .filter(keyEntity -> (keyEntity.getName().toLowerCase().contains(key.toLowerCase())
-                                        ||PinyinHelper.getShortPinyin(keyEntity.getName()).contains(key.toLowerCase())))
+                                        || PinyinHelper.getShortPinyin(keyEntity.getName()).contains(key.toLowerCase())))
                                 .toList();
                     }
                 })
@@ -70,8 +73,20 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
 
     @Override
     public void onRefresh() {
-        KeyModel.getInstance().readKeyEntry()
+        KeyModel.getInstance().registerKeyEntry()
                 .doOnNext(keyEntities -> getView().setCount(keyEntities.size()))
+                .doOnNext(new Action1<List<KeyEntity>>() {
+                    @Override
+                    public void call(List<KeyEntity> keyEntities) {
+                        JUtils.Log("Begin");
+
+                        for (KeyEntity keyEntity : keyEntities) {
+                            JUtils.Log("ID:"+keyEntity.getId());
+                        }
+                        JUtils.Log("End");
+
+                    }
+                })
                 .doOnNext(keyEntities -> Collections.sort(keyEntities, new Comparator<KeyEntity>() {
                     @Override
                     public int compare(KeyEntity lhs, KeyEntity rhs) {

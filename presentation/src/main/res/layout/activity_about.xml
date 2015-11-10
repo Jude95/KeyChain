@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
 
     <include layout="@layout/include_toolbar"/>
 
@@ -38,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_gravity="center_horizontal"
-            android:text="开发者：Jude95"/>
+            android:text="@string/developer"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +48,7 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_gravity="center_horizontal"
             android:autoLink="email"
-            android:text="联系我：973829691@qq.com"/>
+            android:text="@string/contact"/>
     </LinearLayout>
 
 

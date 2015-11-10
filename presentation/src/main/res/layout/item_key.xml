@@ -34,6 +34,9 @@
             android:layout_height="0dp"
             android:layout_weight="1.5"
             android:gravity="center"
+            android:singleLine="true"
+            android:layout_marginRight="64dp"
+            android:ellipsize="end"
             style="@style/TextAppearance.AppCompat.Subhead"
             tools:text="支付婊"/>
         <TextView
@@ -42,6 +45,9 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_marginRight="64dp"
+            android:singleLine="true"
+            android:ellipsize="end"
             style="@style/TextAppearance.AppCompat.Body1"
             tools:text="15683384295"/>
         <TextView
@@ -50,6 +56,9 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_marginRight="64dp"
+            android:singleLine="true"
+            android:ellipsize="end"
             style="@style/TextAppearance.AppCompat.Body1"
             tools:text="asfasifnajsdnfl"/>
 

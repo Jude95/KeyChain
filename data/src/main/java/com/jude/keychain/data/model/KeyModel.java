@@ -17,6 +17,7 @@ import java.util.Random;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Func1;
 import rx.subjects.BehaviorSubject;
 
 /**
@@ -64,6 +65,7 @@ public class KeyModel extends AbsModel {
 
     public void setSeed(String seed){
         SeedManager.setSeed(seed);
+        mKeyEntitiesSubject.onNext(mData);
     }
 
     public boolean checkSeed(String seed){
@@ -103,14 +105,30 @@ public class KeyModel extends AbsModel {
     }
 
 
-    public Observable<List<KeyEntity>> readKeyEntry(){
-        return mKeyEntitiesSubject;
+    //获取只读
+    public Observable<List<KeyEntity>> registerKeyEntry(){
+        return mKeyEntitiesSubject.map(new Func1<List<KeyEntity>, List<KeyEntity>>() {
+            @Override
+            public List<KeyEntity> call(List<KeyEntity> keyEntities) {
+                ArrayList<KeyEntity> list = new ArrayList<>();
+                for (KeyEntity keyEntity : keyEntities) {
+                    list.add(keyEntity.clone());
+                }
+                return list;
+            }
+        });
     }
 
-    public List<KeyEntity> getData(){
-        return mData;
+    //获取只读
+    public List<KeyEntity> getKeyEntry(){
+        ArrayList<KeyEntity> list = new ArrayList<>();
+        for (KeyEntity keyEntity : mData) {
+            list.add(keyEntity.clone());
+        }
+        return list;
     }
 
+    //获取只读
     @Nullable
     public KeyEntity getKeyById(int id){
         for (KeyEntity keyEntity : mData) {
@@ -137,6 +155,12 @@ public class KeyModel extends AbsModel {
         keyEntity.setNote(note);
         keyEntity.setId(getNewId());
         keyEntity.setType(type);
+
+        for (KeyEntity entity : mData) {
+            if (entity.equals(keyEntity)){
+                return;
+            }
+        }
         mData.add(keyEntity);
         mKeyEntitiesSubject.onNext(mData);
     }
@@ -184,11 +208,11 @@ public class KeyModel extends AbsModel {
     }
 
     private int getNewId(){
-        int id = 0;
-        if (mData.size()>0){
-            id = mData.get(mData.size() - 1).getId() + 1;
+        int maxId = 0;
+        for (KeyEntity keyEntity : mData) {
+            maxId = Math.max(maxId,keyEntity.getId());
         }
-        return id;
+        return maxId+1;
     }
 
     public int getDefaultType(){

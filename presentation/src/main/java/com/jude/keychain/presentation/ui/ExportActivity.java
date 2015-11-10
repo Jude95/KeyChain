@@ -1,7 +1,6 @@
 package com.jude.keychain.presentation.ui;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
@@ -14,6 +13,7 @@ import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.ExportPresenter;
 import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
+import com.jude.utils.JUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -49,11 +49,11 @@ public class ExportActivity extends BeamBaseActivity<ExportPresenter> {
     }
 
     public void showSuccess(){
-        Snackbar.make(copy, R.string.copy_board, Snackbar.LENGTH_SHORT).show();
+        JUtils.Toast(getString(R.string.copy_board));
     }
 
     public void showFailure(){
-        Snackbar.make(copy , R.string.error_export,Snackbar.LENGTH_SHORT).show();
+        JUtils.Toast(getString(R.string.error_export));
     }
 
 

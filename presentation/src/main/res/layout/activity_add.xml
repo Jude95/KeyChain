@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -62,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:paddingRight="96dp"
             android:hint="@string/key_account"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -70,7 +72,7 @@
             android:id="@+id/select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
+            android:layout_gravity="top|right"
             android:text="@string/account_select"
             android:textColor="?attr/colorAccent"
             style="@style/Widget.AppCompat.Button.Borderless"/>
@@ -94,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+                android:paddingRight="96dp"
                 android:hint="@string/key_password"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -102,7 +105,7 @@
             android:id="@+id/create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
+            android:layout_gravity="top|right"
             android:text="@string/create_password"
             android:textColor="?attr/colorAccent"
             style="@style/Widget.AppCompat.Button.Borderless"/>

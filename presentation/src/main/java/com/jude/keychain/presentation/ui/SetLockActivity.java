@@ -1,6 +1,5 @@
 package com.jude.keychain.presentation.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
@@ -133,7 +132,6 @@ public class SetLockActivity extends BeamBaseActivity<SetLockPresenter> {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(this,MainActivity.class));
-        finish();
+        getPresenter().back();
     }
 }

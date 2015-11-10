@@ -88,6 +88,54 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
         select.setOnClickListener(v->{
             showAccountList();
         });
+        name.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                name.setError("");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        account.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                account.setError("");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        password.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                password.setError("");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -212,7 +260,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
 
     private void showAccountList(){
         ArrayList<String> arrayList = new ArrayList<>();
-        KeyModel.getInstance().readKeyEntry()
+        KeyModel.getInstance().registerKeyEntry()
                 .first()
                 .flatMap(new Func1<List<KeyEntity>, Observable<List<KeyEntity>>>() {
                     @Override
@@ -227,6 +275,14 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
                                     arrayList.add(keyEntity.getAccount());
                                 })
                                 .toList();
+                    }
+                })
+                .filter(keyEntities -> {
+                    if (keyEntities.size() > 0) {
+                        return true;
+                    } else {
+                        JUtils.Toast(getString(R.string.error_no_account));
+                        return false;
                     }
                 })
                 .map(keyEntities -> arrayList)

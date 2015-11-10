@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -71,6 +72,9 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
+
         ButterKnife.bind(this);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -196,5 +200,9 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         return true;
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }

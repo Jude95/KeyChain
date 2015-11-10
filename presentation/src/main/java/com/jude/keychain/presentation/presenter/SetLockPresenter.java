@@ -52,4 +52,11 @@ public class SetLockPresenter extends Presenter<SetLockActivity> {
             getView().setWrong();
         }
     }
+
+    public void back(){
+        if (KeyModel.getInstance().isFirst()){
+            getView().startActivity(new Intent(getView(),MainActivity.class));
+        }
+        getView().finish();
+    }
 }

@@ -17,7 +17,7 @@ public class ImportModel extends AbsModel {
     }
 
     public String exportData(final String password){
-        String json = new Gson().toJson(KeyModel.getInstance().getData());
+        String json = new Gson().toJson(KeyModel.getInstance().getKeyEntry());
         try {
             return Encryptor.encrypt(password,json);
         } catch (Exception e) {
