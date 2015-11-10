@@ -14,7 +14,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -89,8 +88,7 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        onColorSelection(null,Color.getColorByType(getPresenter().getColorType()));
+        onColorSelection(null, Color.getColorByType(getPresenter().getColorType()));
     }
 
     public void showDeleteSnackBar() {

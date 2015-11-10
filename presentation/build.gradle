@@ -54,6 +54,7 @@ dependencies {
     compile presentationDependencies.ripple
     compile presentationDependencies.jpinyin
     compile presentationDependencies.tagview
+    //compile presentationDependencies.searchview
     compile project(':data')
     compile project(':domain')
     compile project(':patternlock')
