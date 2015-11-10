@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
     android:layout_width="match_parent"
@@ -34,15 +35,15 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <View
+        <com.jude.tagview.TAGView
             android:id="@+id/type"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="32dp"
+            android:layout_marginRight="40dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
-            android:background="@android:color/holo_green_light"/>
+            app:tag_as_circle="true"/>
     </LinearLayout>
 
     <FrameLayout

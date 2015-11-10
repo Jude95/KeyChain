@@ -28,7 +28,9 @@ public class AddPresenter extends BeamDataActivityPresenter<AddActivity,KeyEntit
     public void setColorType(int type){
         data.setType(type);
     }
-
+    public int getColorType(){
+        return data.getType();
+    }
     public void submit(String name,String account,String password,String note){
         if (data.getId() == -1 || !KeyModel.getInstance().containId(data.getId()))
             KeyModel.getInstance().createKey(name,account,password,note,data.getType());

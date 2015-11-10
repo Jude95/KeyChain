@@ -33,6 +33,7 @@ import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.AddPresenter;
 import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
+import com.jude.tagview.TAGView;
 import com.jude.utils.JUtils;
 
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     @Bind(R.id.note)
     TextInputLayout note;
     @Bind(R.id.type)
-    View type;
+    TAGView type;
     @Bind(R.id.create)
     Button create;
     @Bind(R.id.toolbar)
@@ -75,7 +76,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
         ButterKnife.bind(this);
         type.setOnClickListener(v -> {
             new ColorChooserDialog.Builder(this, R.string.color_palette)
-                    .preselect(Color.Green.getColor())
+                    .preselect(Color.getColorByType(getPresenter().getColorType()))
                     .allowUserColorInput(false)
                     .cancelButton(R.string.cancel)
                     .doneButton(R.string.done)

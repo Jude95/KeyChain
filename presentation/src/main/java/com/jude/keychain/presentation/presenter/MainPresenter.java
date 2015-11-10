@@ -58,7 +58,6 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
             return;
         }
         KeyModel.getInstance().registerKeyEntry()
-                .doOnNext(keyEntities -> getView().setCount(keyEntities.size()))
                 .flatMap(new Func1<List<KeyEntity>, Observable<List<KeyEntity>>>() {
                     @Override
                     public Observable<List<KeyEntity>> call(List<KeyEntity> keyEntities) {
@@ -68,6 +67,7 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
                                 .toList();
                     }
                 })
+                .doOnNext(keyEntities -> getView().setCount(keyEntities.size()))
                 .unsafeSubscribe(getRefreshSubscriber());
     }
 

@@ -10,7 +10,7 @@ ext {
     gsonVersion             = '2.4'
     rippleVersion           = '1.0.2'
     jpinyinVersion          = '1.0'
-
+    tagviewVersion          = '2.1.4'
 
     //libraries dependencies
     presentationDependencies = [
@@ -24,7 +24,8 @@ ext {
             utils               : "com.jude:utils:${utilsVersion}",
             materialDialogsCommons     : "com.afollestad.material-dialogs:commons:${materialDialogsVersion}@aar",
             materialDialogsCore     : "com.afollestad.material-dialogs:core:${materialDialogsVersion}@aar",
-            jpinyin             : "com.github.stuxuhai:jpinyin:${jpinyinVersion}"
+            jpinyin             : "com.github.stuxuhai:jpinyin:${jpinyinVersion}",
+            tagview             : "com.jude:tagview:${tagviewVersion}"
     ]
 
     dataDependencies = [

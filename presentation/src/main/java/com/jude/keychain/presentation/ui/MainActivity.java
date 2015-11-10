@@ -72,8 +72,6 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-                WindowManager.LayoutParams.FLAG_SECURE);
 
         ButterKnife.bind(this);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
@@ -200,9 +198,5 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         return true;
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        finish();
-    }
+
 }

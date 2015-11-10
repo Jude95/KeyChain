@@ -53,6 +53,7 @@ dependencies {
     compile presentationDependencies.materialDialogsCommons
     compile presentationDependencies.ripple
     compile presentationDependencies.jpinyin
+    compile presentationDependencies.tagview
     compile project(':data')
     compile project(':domain')
     compile project(':patternlock')
