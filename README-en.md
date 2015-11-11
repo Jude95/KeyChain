@@ -12,10 +12,10 @@ APP will not save the encryption key,The key is your pattern which you draw when
 [Direct](http://7xn7nj.com2.z0.glb.qiniucdn.com/passwordbox1.5.apk)
 
 # ScreenShot
-![01](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_zh/01.png)
-![02](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_zh/02.png)
-![03](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_zh/03.png)
-![04](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_zh/04.png)
+![01](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_en/01.png)
+![02](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_en/02.png)
+![03](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_en/03.png)
+![04](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_en/04.png)
 
 # Dependent libraries
 [Beam](https://github.com/Jude95/Beam)  
