@@ -10,8 +10,24 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include
-            layout="@layout/include_toolbar"/>
+        <com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout
+            android:id="@+id/toolbar_Container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            >
+            <android.support.v7.widget.Toolbar
+                android:id="@id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            <com.miguelcatalan.materialsearchview.MaterialSearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout>
         <include layout="@layout/content_main"/>
     </LinearLayout>
 

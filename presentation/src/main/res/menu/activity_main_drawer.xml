@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_password"
             android:icon="@drawable/menu_password"
@@ -21,7 +21,7 @@
     </group>
 
     <item android:title="@string/nav_more">
-        <menu android:checkableBehavior="single">
+        <menu android:checkableBehavior="none">
             <item android:id="@+id/nav_help"
                 android:icon="@drawable/nav_help"
                 android:title="@string/nav_help" />

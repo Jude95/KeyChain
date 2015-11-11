@@ -99,7 +99,7 @@ passwords once in a while and send to anywhere to keep it, such as PC disk. and 
         butterknife:\nhttps://github.com/JakeWharton/butterknife\n\n
     </string>
     <string name="export_info">Copy all the passwords to the clipboard, nobody can understand it without the key, so you can stick it anywhere.</string>
-    <string name="import_info">Stick the key here, and input your password to import and duplicate passwords will be merged.</string>
+    <string name="import_info">Exported encrypted text pasted into here, and enter your password to import,the duplicate passwords will be merged.</string>
     <string name="error_pattern">Wrong Pattern</string>
     <string name="mode">Mode</string>
     <string name="size">Length</string>

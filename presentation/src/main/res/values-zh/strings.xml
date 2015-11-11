@@ -96,7 +96,7 @@
         butterknife:\nhttps://github.com/JakeWharton/butterknife\n\n
     </string>
     <string name="export_info">将所有密钥加密存至粘贴板，你可以随意放置，没有密码别人无法解读。</string>
-    <string name="import_info">将密钥串加密文本粘贴到这里，输入密码导入密钥，会自动合并相同密钥。</string>
+    <string name="import_info">将导出的加密文本粘贴到这里，输入密码导入密钥，会自动合并相同密钥。</string>
     <string name="error_pattern">图案错误</string>
     <string name="mode">模式</string>
     <string name="size">位数</string>

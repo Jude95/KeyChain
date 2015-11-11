@@ -3,7 +3,7 @@ ext {
     //Version
     beamVersion             = '2.4.8'
     supportLibraryVersion   = '23.0.1'
-    swipeBackHelperVersion  = '2.1.1'
+    swipeBackHelperVersion  = '2.1.2'
     butterKnife             = '7.0.1'
     utilsVersion            = '1.0.8'
     materialDialogsVersion  = '0.8.5.0'

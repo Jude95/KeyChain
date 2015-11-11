@@ -11,8 +11,8 @@ android {
         applicationId "com.jude.keychain"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 4
-        versionName "1.3"
+        versionCode 6
+        versionName "1.5"
     }
     signingConfigs {
         release{
@@ -54,7 +54,7 @@ dependencies {
     compile presentationDependencies.ripple
     compile presentationDependencies.jpinyin
     compile presentationDependencies.tagview
-    //compile presentationDependencies.searchview
+    compile presentationDependencies.searchview
     compile project(':data')
     compile project(':domain')
     compile project(':patternlock')

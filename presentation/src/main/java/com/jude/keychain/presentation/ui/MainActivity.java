@@ -3,6 +3,7 @@ package com.jude.keychain.presentation.ui;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -10,11 +11,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
@@ -30,6 +31,9 @@ import com.jude.keychain.presentation.viewholder.KeyViewHolder;
 import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.utils.JUtils;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,18 +46,19 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
     Toolbar toolbar;
     @Bind(R.id.toolbar_Container)
     PaddingStatusBarFrameLayout toolbarContainer;
+    @Bind(R.id.search_view)
+    MaterialSearchView searchView;
     private TextView mLastView;
     private FloatingActionButton mFabAdd;
-    private SearchView search;
 
     @Override
     protected ListConfig getConfig() {
         mLastView = new TextView(this);
         mLastView.setGravity(Gravity.CENTER);
         int height = JUtils.dip2px(48);
-        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP){
-            mLastView.setPadding(0,0,0,JUtils.getNavigationBarHeight());
-            height+=JUtils.getNavigationBarHeight();
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            mLastView.setPadding(0, 0, 0, JUtils.getNavigationBarHeight());
+            height += JUtils.getNavigationBarHeight();
         }
         mLastView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height));
         return super.getConfig().setNoMoreView(mLastView);
@@ -79,6 +84,20 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
 
         mFabAdd = (FloatingActionButton) findViewById(R.id.fab);
         mFabAdd.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, AddActivity.class)));
+
+        searchView.setVoiceSearch(true);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                getPresenter().search(newText);
+                return false;
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -112,30 +131,23 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            if (searchView.isSearchOpen()) {
+                searchView.closeSearch();
+            } else {
+                super.onBackPressed();
+            }
+
         }
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        search = (SearchView) menu.findItem(R.id.search).getActionView();
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+        searchView.setMenuItem(menu.findItem(R.id.search));
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                getPresenter().search(newText);
-                return false;
-            }
-        });
-        search.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) search.setIconified(!hasFocus);
-        });
         return true;
     }
 
@@ -156,7 +168,7 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
                     .doneButton(R.string.done)
                     .customColors(Color.getColors(), null)
                     .show();
-            
+
             return true;
         }
 
@@ -177,18 +189,18 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         int id = item.getItemId();
 
         if (id == R.id.nav_password) {
-            startActivity(new Intent(this,SetLockActivity.class));
+            startActivity(new Intent(this, SetLockActivity.class));
             finish();
         } else if (id == R.id.nav_export) {
             startActivity(new Intent(this, ExportActivity.class));
         } else if (id == R.id.nav_import) {
             startActivity(new Intent(this, ImportActivity.class));
         } else if (id == R.id.nav_about) {
-            startActivity(new Intent(this,AboutActivity.class));
+            startActivity(new Intent(this, AboutActivity.class));
         } else if (id == R.id.nav_help) {
-            startActivity(new Intent(this,HelpActivity.class));
+            startActivity(new Intent(this, HelpActivity.class));
         } else if (id == R.id.nav_protocol) {
-            startActivity(new Intent(this,ProtocolActivity.class));
+            startActivity(new Intent(this, ProtocolActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -197,4 +209,20 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
     }
 
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MaterialSearchView.REQUEST_VOICE && resultCode == RESULT_OK) {
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && matches.size() > 0) {
+                String searchWrd = matches.get(0);
+                if (!TextUtils.isEmpty(searchWrd)) {
+                    searchView.setQuery(searchWrd, false);
+                }
+            }
+
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }
