@@ -2,6 +2,7 @@ package com.jude.keychain.presentation.app;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.jude.beam.bijection.ActivityLifeCycleDelegate;
 import com.jude.swipbackhelper.SwipeBackHelper;
@@ -19,8 +20,8 @@ public class ActivityDelegate extends ActivityLifeCycleDelegate {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SwipeBackHelper.onCreate(getActivity());
-//        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
-//                WindowManager.LayoutParams.FLAG_SECURE);
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
     }
 
     @Override
