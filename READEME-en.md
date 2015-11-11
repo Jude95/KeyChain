@@ -1,4 +1,4 @@
-**(中文)[https://github.com/Jude95/KeyChain/blob/master/README.md]** | **(English)[https://github.com/Jude95/KeyChain/blob/master/README-en.md]**  
+**[中文](https://github.com/Jude95/KeyChain/blob/master/README.md)** | **[English](https://github.com/Jude95/KeyChain/blob/master/README-en.md)**  
 
 # PasswordBox
 
