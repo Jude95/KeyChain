@@ -7,7 +7,13 @@
 APP不会保存加密密钥，而是将启动时您输入的解锁密码作为加密密钥，而验证您的解锁密码则是直接尝试用它解密设置解锁密码时加密的特定文本。所以解锁密码也是同样安全的。  
 
 # 下载
-[直接下载](http://7xn7nj.com2.z0.glb.qiniucdn.com/passwordbox1.5.apk)
+
+<a href="https://play.google.com/store/apps/details?id=com.jude.keychain" target="_blank">
+<img class="alignnone size-full wp-image-1175" src="http://drakeet.me/wp-content/uploads/2015/10/gp.png" alt="gp" width="129" height="45">
+</a>   
+Google Play: https://play.google.com/store/apps/details?id=com.jude.keychain   
+希望能从Google Play下载并给个5星好评。十分感谢。    
+如果翻墙不便，可以从[豌豆荚](http://www.wandoujia.com/apps/com.jude.keychain)或[直接下载](http://7xn7nj.com2.z0.glb.qiniucdn.com/passwordbox1.5.apk)
 
 # 截图
 ![01](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_zh/01.png)
