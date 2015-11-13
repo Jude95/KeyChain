@@ -22,13 +22,17 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:theme="@style/AppTheme.AppBarOverlay"
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
             <com.miguelcatalan.materialsearchview.MaterialSearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout>
-        <include layout="@layout/content_main"/>
+        <include
+            layout="@layout/content_main"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
     </LinearLayout>
 
 
