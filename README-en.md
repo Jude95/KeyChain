@@ -9,7 +9,12 @@ Encrypted by AES(Advanced Encryption Standard) which takes billions of years to 
 APP will not save the encryption key,The key is your pattern which you draw when you log in, and what verify your pattern is a special text encrypted when you set your pattern, so the encryption key is safe too.
 
 # Download
-[Direct](http://7xn7nj.com2.z0.glb.qiniucdn.com/passwordbox1.5.apk)
+<a href="https://play.google.com/store/apps/details?id=com.jude.keychain" target="_blank">
+<img class="alignnone size-full wp-image-1175" src="http://drakeet.me/wp-content/uploads/2015/10/gp.png" alt="gp" width="129" height="45">
+</a>   
+Google Play: https://play.google.com/store/apps/details?id=com.jude.keychain   
+I will be very appreciated if you can download my app from GooglePlay and rate it ★★★★★   
+or you can [download directly](http://7xn7nj.com2.z0.glb.qiniucdn.com/passwordbox1.5.apk)
 
 # ScreenShot
 ![01](https://raw.githubusercontent.com/Jude95/KeyChain/master/screenshot_en/01.png)
