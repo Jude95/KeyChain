@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout
+<com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar_Container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
+    app:padding_status="true"
     >
         <android.support.v7.widget.Toolbar
             android:id="@id/toolbar"
@@ -15,4 +16,4 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-</com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout>
+</com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout>

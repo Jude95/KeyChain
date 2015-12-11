@@ -10,7 +10,7 @@ import com.jude.keychain.R;
 import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.AboutPresenter;
-import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
+import com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout;
 import com.jude.utils.JUtils;
 
 import butterknife.Bind;
@@ -25,7 +25,7 @@ public class AboutActivity extends BeamBaseActivity<AboutPresenter> {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.toolbar_Container)
-    PaddingStatusBarFrameLayout toolbarContainer;
+    FitSystemWindowsFrameLayout toolbarContainer;
     @Bind(R.id.version)
     TextView version;
 

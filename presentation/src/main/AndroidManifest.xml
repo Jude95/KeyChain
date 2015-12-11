@@ -27,8 +27,10 @@
 
         <activity android:name=".presentation.ui.SetLockActivity"/>
         <activity android:name=".presentation.ui.ExportActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:label="@string/seed_export"/>
         <activity android:name=".presentation.ui.ImportActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:label="@string/seed_import"/>
         <activity android:name=".presentation.ui.AboutActivity"
             android:label="@string/nav_about"/>

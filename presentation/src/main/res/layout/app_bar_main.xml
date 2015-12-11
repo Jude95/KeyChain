@@ -4,17 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+    >
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout
+        <com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout
             android:id="@+id/toolbar_Container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
+            app:padding_status="true"
             >
             <android.support.v7.widget.Toolbar
                 android:id="@id/toolbar"
@@ -28,7 +29,7 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout>
+        </com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout>
         <include
             layout="@layout/content_main"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"

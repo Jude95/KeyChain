@@ -32,7 +32,7 @@ import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.AddPresenter;
-import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
+import com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout;
 import com.jude.tagview.TAGView;
 import com.jude.utils.JUtils;
 
@@ -65,7 +65,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.toolbar_Container)
-    PaddingStatusBarFrameLayout toolbarContainer;
+    FitSystemWindowsFrameLayout toolbarContainer;
     @Bind(R.id.select)
     Button select;
 
@@ -227,7 +227,13 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
             animation.setDuration(500);
             animation.setInterpolator(new AccelerateDecelerateInterpolator());
             v.startAnimation(animation);
-            password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(), Integer.parseInt(count.getText().toString())));
+            int lenght;
+            try{
+                lenght = Integer.parseInt(count.getText().toString());
+            }catch (Throwable e){
+                lenght = 0;
+            }
+            password.setText(getPresenter().createPassword(spinner.getSelectedItemPosition(),lenght ));
         });
         count.addTextChangedListener(new TextWatcher() {
             @Override

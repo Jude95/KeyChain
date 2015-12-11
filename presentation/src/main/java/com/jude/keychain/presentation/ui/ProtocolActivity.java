@@ -9,7 +9,7 @@ import com.jude.keychain.R;
 import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.ProtocolPresenter;
-import com.jude.keychain.presentation.widget.PaddingStatusBarFrameLayout;
+import com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,7 +22,7 @@ public class ProtocolActivity extends BeamBaseActivity<ProtocolPresenter> {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.toolbar_Container)
-    PaddingStatusBarFrameLayout toolbarContainer;
+    FitSystemWindowsFrameLayout toolbarContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

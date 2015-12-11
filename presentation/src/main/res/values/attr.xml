@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="fit_system_windows">
+        <attr name="padding_status" format="boolean"/>
+        <attr name="padding_navigation" format="boolean"/>
+    </declare-styleable>
+</resources>

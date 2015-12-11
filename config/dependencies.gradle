@@ -1,9 +1,20 @@
 
 ext {
+    applicationId = "com.jude.keychain"
+    applicationIdDebug = "com.jude.keychain.debug"
+    versionCode = 7
+    versionName = "1.6"
+
+    androidBuildToolsVersion = '23.0.1'
+    androidMinSdkVersion = 15
+    androidTargetSdkVersion = 23
+    androidCompileSdkVersion = 23
+    androidSupportSdkVersion = '23.1.1'
+
+
     //Version
-    beamVersion             = '2.4.8'
-    supportLibraryVersion   = '23.0.1'
-    swipeBackHelperVersion  = '2.1.2'
+    beamVersion             = '2.5.0'
+    swipeBackHelperVersion  = '2.1.5'
     butterKnife             = '7.0.1'
     utilsVersion            = '1.0.8'
     materialDialogsVersion  = '0.8.5.0'
@@ -14,9 +25,9 @@ ext {
     searchViewVersion       = '1.3.0'
     //libraries dependencies
     presentationDependencies = [
-            appcompat           : "com.android.support:appcompat-v7:${supportLibraryVersion}",
-            design              : "com.android.support:design:${supportLibraryVersion}",
-            card                : "com.android.support:cardview-v7:${supportLibraryVersion}",
+            appcompat           : "com.android.support:appcompat-v7:${androidSupportSdkVersion}",
+            design              : "com.android.support:design:${androidSupportSdkVersion}",
+            card                : "com.android.support:cardview-v7:${androidSupportSdkVersion}",
             ripple              : "com.balysv:material-ripple:${rippleVersion}",
             beam                : "com.jude:beam:${beamVersion}",
             swipeBackHelper     : "com.jude:swipebackhelper:${swipeBackHelperVersion}",
