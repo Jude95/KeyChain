@@ -1,7 +1,6 @@
 
 ext {
     applicationId = "com.jude.keychain"
-    applicationIdDebug = "com.jude.keychain.debug"
     versionCode = 7
     versionName = "1.6"
 

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 Properties props = new Properties()
-props.load(new FileInputStream(file("signing.properties")))
+props.load(new FileInputStream(file("../config/signing.properties")))
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
