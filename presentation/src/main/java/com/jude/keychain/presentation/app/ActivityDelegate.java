@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.jude.beam.bijection.ActivityLifeCycleDelegate;
+import com.jude.keychain.BuildConfig;
 import com.jude.swipbackhelper.SwipeBackHelper;
 
 /**
@@ -20,6 +21,7 @@ public class ActivityDelegate extends ActivityLifeCycleDelegate {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SwipeBackHelper.onCreate(getActivity());
+        if (!BuildConfig.DEBUG)
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE);
     }
