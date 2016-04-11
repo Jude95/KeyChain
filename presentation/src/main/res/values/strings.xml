@@ -35,6 +35,7 @@
     <string name="all">All</string>
     <string name="search">Search</string>
     <string name="patter_error">Wrong Pattern</string>
+    <string name="pattern_success">Right Pattern</string>
     <string name="seed_set">Draw an unlock pattern</string>
     <string name="seed_confirm">Draw pattern again to confirm</string>
     <string name="seed_check">Confirm saved pattern</string>
@@ -112,7 +113,6 @@ passwords once in a while and send to anywhere to keep it, such as PC disk. and 
     <string name="display_pattern_path">Display pattern path</string>
     <string name="display_pattern_path_info">Display pattern path on lock screen</string>
     <string name="wallpaper">Wallpaper</string>
-    <string name="wallpaper_info">change the wallpaper on lock screen</string>
     <string name="default_wallpaper">Default wallpaper</string>
     <string name="nav_setting">Setting</string>
     <string name="request_permissions">I can\'t select Image with out Permissions</string>

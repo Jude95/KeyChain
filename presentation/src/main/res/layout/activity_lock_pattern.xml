@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/wallpaper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/bg_lock"
@@ -15,7 +16,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#bb000000"/>
+        android:background="#99000000"/>
 
     <TextView
         android:id="@+id/hint"

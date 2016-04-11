@@ -4,8 +4,8 @@ apply plugin: 'me.tatarka.retrolambda'
 Properties props = new Properties()
 props.load(new FileInputStream(file("../config/signing.properties")))
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
     defaultConfig {
         applicationId rootProject.ext.applicationId
@@ -26,7 +26,6 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
             zipAlignEnabled true
             // 移除无用的resource文件
             shrinkResources true
@@ -44,6 +43,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -70,6 +72,7 @@ dependencies {
     compile presentationDependencies.tagview
     compile presentationDependencies.searchview
     compile presentationDependencies.rxPermissions
+    compile presentationDependencies.fitSystemBarLayout
     compile project(':data')
     compile project(':domain')
     compile project(':patternlock')

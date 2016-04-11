@@ -3,4 +3,7 @@
     <string name="preview">预览</string>
     <string name="msg_no_camera">没有系统相机</string>
     <string name="msg_amount_limit">已经达到最高选择数量</string>
+    <string name="picture">图片</string>
+    <string name="finish">完成</string>
+    <string name="camera">拍摄照片</string>
 </resources>

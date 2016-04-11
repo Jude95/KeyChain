@@ -23,12 +23,12 @@ import com.jude.beam.bijection.RequiresPresenter;
 import com.jude.beam.expansion.list.BeamListActivity;
 import com.jude.beam.expansion.list.ListConfig;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
+import com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout;
 import com.jude.keychain.R;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.MainPresenter;
 import com.jude.keychain.presentation.viewholder.KeyViewHolder;
-import com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.utils.JUtils;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -44,10 +44,10 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.toolbar_Container)
-    FitSystemWindowsFrameLayout toolbarContainer;
     @Bind(R.id.search_view)
     MaterialSearchView searchView;
+    @Bind(R.id.container_main)
+    FitSystemWindowsFrameLayout container;
     private TextView mLastView;
     private FloatingActionButton mFabAdd;
 
@@ -179,7 +179,7 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
     public void onColorSelection(ColorChooserDialog colorChooserDialog, int i) {
         getPresenter().setColorType(Color.getTypeByColor(i));
         toolbar.setBackgroundColor(i);
-        toolbarContainer.setBackgroundColor(i);
+        container.setStatusBarColor(i);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -197,7 +197,7 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
             startActivity(new Intent(this, ImportActivity.class));
         } else if (id == R.id.nav_setting) {
             startActivity(new Intent(this, SettingActivity.class));
-        }else if (id == R.id.nav_protocol) {
+        } else if (id == R.id.nav_protocol) {
             startActivity(new Intent(this, ProtocolActivity.class));
         }
 
@@ -205,7 +205,6 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
     @Override

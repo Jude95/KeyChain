@@ -7,7 +7,7 @@
         android:drawableTop="@drawable/asy"
         android:drawablePadding="10dp"
         android:layout_gravity="center"
-        android:text="拍摄照片"
+        android:text="@string/camera"
         android:textSize="14sp"
         android:textColor="#CDCECE"
         android:gravity="center_horizontal"

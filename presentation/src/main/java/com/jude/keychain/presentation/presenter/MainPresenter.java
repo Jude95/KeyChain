@@ -40,7 +40,6 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     protected void onCreateView(MainActivity view) {
         super.onCreateView(view);
         getAdapter().setOnItemClickListener(position -> {
-            JUtils.Log("position:"+position);
             KeyEntity keyEntity = getAdapter().getItem(position);
             Intent i = new Intent(getView(), KeyDetailActivity.class);
             i.putExtra("id", keyEntity.getId());

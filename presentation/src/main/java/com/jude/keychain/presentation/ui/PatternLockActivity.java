@@ -4,8 +4,10 @@ import android.app.Service;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jude.beam.bijection.RequiresPresenter;
 import com.jude.beam.expansion.BeamBaseActivity;
 import com.jude.keychain.R;
@@ -14,6 +16,7 @@ import com.jude.keychain.presentation.presenter.PatternLockPresenter;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.utils.JUtils;
 
+import java.io.File;
 import java.util.List;
 
 import butterknife.Bind;
@@ -30,18 +33,25 @@ public class PatternLockActivity extends BeamBaseActivity<PatternLockPresenter> 
     PatternView patternView;
     @Bind(R.id.hint)
     TextView hint;
+    @Bind(R.id.wallpaper)
+    ImageView wallpaper;
 
     private String mSeed;
     Vibrator vib;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock_pattern);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         ButterKnife.bind(this);
+        String image = JUtils.getSharedPreference().getString(PreferenceKey.KEY_WALLPAPER,null);
+        if (image!=null){
+            Glide.with(this).load(new File(image)).error(R.drawable.bg_lock).into(wallpaper);
+        }
         vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
         patternView.setInputEnabled(true);
-        patternView.setInStealthMode(!JUtils.getSharedPreference().getBoolean(PreferenceKey.KEY_DISPLAY_PATH,true));
+        patternView.setInStealthMode(!JUtils.getSharedPreference().getBoolean(PreferenceKey.KEY_DISPLAY_PATH, true));
         patternView.setOnPatternListener(new PatternView.OnPatternListener() {
             @Override
             public void onPatternStart() {
@@ -69,10 +79,9 @@ public class PatternLockActivity extends BeamBaseActivity<PatternLockPresenter> 
 
 
     public void setCorrect() {
-        JUtils.Log("正确");
         patternView.setDisplayMode(PatternView.DisplayMode.Correct);
         patternView.setInputEnabled(false);
-
+        hint.setText(R.string.pattern_success);
     }
 
     public void setWrong() {
@@ -87,9 +96,9 @@ public class PatternLockActivity extends BeamBaseActivity<PatternLockPresenter> 
         patternView.setInputEnabled(true);
     }
 
-    public void setTryDelay(int time){
+    public void setTryDelay(int time) {
         patternView.setInputEnabled(false);
-        hint.setText(String.format(getString(R.string.error_overload),time));
+        hint.setText(String.format(getString(R.string.error_overload), time));
     }
 
     private int getNumberByPosition(int column, int row) {

@@ -35,6 +35,7 @@
     <string name="all">全部</string>
     <string name="search">搜索</string>
     <string name="patter_error">图案错误</string>
+    <string name="pattern_success">解锁成功</string>
     <string name="seed_set">请设置新密码</string>
     <string name="seed_confirm">请再次确认密码</string>
     <string name="seed_check">请输入原密码</string>
@@ -104,6 +105,14 @@
     <string name="error_no_account">你还没有已存账号</string>
     <string name="developer">开发者：Jude95</string>
     <string name="contact">联系我：973829691@qq.com</string>
+    <string name="display_password">显示密码</string>
+    <string name="display_password_info">在主屏幕上显示密码</string>
+    <string name="display_pattern_path">显示图案路径</string>
+    <string name="display_pattern_path_info">在锁屏界面上显示图案路径</string>
+    <string name="wallpaper">锁屏壁纸</string>
+    <string name="default_wallpaper">默认壁纸</string>
+    <string name="nav_setting">设置</string>
+    <string name="request_permissions">没有权限让我怎么读取图片嘛~</string>
     <string-array name="password_type">
         <item>数字字母</item>
         <item>数字字母大小写</item>

@@ -27,12 +27,12 @@ import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.afollestad.materialdialogs.internal.MDButton;
 import com.jude.beam.bijection.RequiresPresenter;
 import com.jude.beam.expansion.data.BeamDataActivity;
+import com.jude.fitsystemwindowlayout.FitSystemWindowsLinearLayout;
 import com.jude.keychain.R;
 import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.AddPresenter;
-import com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout;
 import com.jude.tagview.TAGView;
 import com.jude.utils.JUtils;
 
@@ -64,8 +64,8 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     Button create;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.toolbar_Container)
-    FitSystemWindowsFrameLayout toolbarContainer;
+    @Bind(R.id.container)
+    FitSystemWindowsLinearLayout container;
     @Bind(R.id.select)
     Button select;
 
@@ -190,7 +190,7 @@ public class AddActivity extends BeamDataActivity<AddPresenter, KeyEntity> imple
     public void onColorSelection(ColorChooserDialog colorChooserDialog, int i) {
         getPresenter().setColorType(Color.getTypeByColor(i));
         type.setBackgroundColor(i);
-        toolbarContainer.setBackgroundColor(i);
+        container.setStatusBarColor(i);
         toolbar.setBackgroundColor(i);
     }
 

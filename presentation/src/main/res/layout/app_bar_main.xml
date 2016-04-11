@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:status_color="@color/blueLight"
     >
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout
-            android:id="@+id/toolbar_Container"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:padding_status="true"
             >
             <android.support.v7.widget.Toolbar
                 android:id="@id/toolbar"
@@ -29,31 +28,41 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout>
-        <include
-            layout="@layout/content_main"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        </FrameLayout>
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:id="@id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             />
     </LinearLayout>
 
 
-    <android.support.design.widget.CoordinatorLayout
+    <com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        app:statusBarBackground="@color/tans"
-        >
+        app:padding_status="false"
+        app:padding_navigation="true">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/ic_add"
-            />
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:statusBarBackground="@color/tans"
+            >
 
-    </android.support.design.widget.CoordinatorLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_add"
+                />
+
+        </android.support.design.widget.CoordinatorLayout>
+
+    </com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
+
+</com.jude.fitsystemwindowlayout.FitSystemWindowsFrameLayout>

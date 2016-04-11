@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -19,7 +18,6 @@ import com.jude.keychain.R;
 import com.jude.keychain.data.model.KeyModel;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.presenter.ExportPresenter;
-import com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout;
 import com.jude.utils.JUtils;
 
 import butterknife.Bind;
@@ -30,10 +28,7 @@ import butterknife.ButterKnife;
  */
 @RequiresPresenter(ExportPresenter.class)
 public class ExportActivity extends BeamBaseActivity<ExportPresenter> implements View.OnFocusChangeListener{
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.toolbar_Container)
-    FitSystemWindowsFrameLayout toolbarContainer;
+
     @Bind(R.id.password)
     TextInputLayout password;
     @Bind(R.id.copy)
@@ -101,8 +96,6 @@ public class ExportActivity extends BeamBaseActivity<ExportPresenter> implements
 
     private void setColor() {
         int color = Color.getColorByType(KeyModel.getInstance().getDefaultType());
-        toolbar.setBackgroundColor(color);
-        toolbarContainer.setBackgroundColor(color);
         headContainer.setBackgroundColor(color);
     }
 }

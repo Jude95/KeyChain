@@ -3,7 +3,6 @@ package com.jude.keychain.presentation.ui;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -11,11 +10,11 @@ import android.widget.TextView;
 import com.jude.beam.expansion.BeamBaseActivity;
 import com.jude.keychain.R;
 import com.jude.keychain.data.model.KeyModel;
-import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.domain.value.PreferenceKey;
-import com.jude.keychain.presentation.widget.FitSystemWindowsFrameLayout;
 import com.jude.utils.JUtils;
 import com.tbruyelle.rxpermissions.RxPermissions;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,11 +28,6 @@ import me.nereo.multi_image_selector.MultiImageSelectorActivity;
  * 3. 解锁背景更换
  */
 public class SettingActivity extends BeamBaseActivity {
-
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.toolbar_Container)
-    FitSystemWindowsFrameLayout toolbarContainer;
     @Bind(R.id.switch_display_password)
     Switch switchDisplayPassword;
     @Bind(R.id.switch_display_path)
@@ -52,7 +46,6 @@ public class SettingActivity extends BeamBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
-        setColor();
         switchDisplayPassword.setChecked(JUtils.getSharedPreference().getBoolean(PreferenceKey.KEY_DISPLAY_PASSWORD, true));
         switchDisplayPath.setChecked(JUtils.getSharedPreference().getBoolean(PreferenceKey.KEY_DISPLAY_PATH, true));
         switchDisplayPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -69,7 +62,7 @@ public class SettingActivity extends BeamBaseActivity {
                     .subscribe(flag->{
                         if (flag){
                             Intent intent = new Intent(this, MultiImageSelectorActivity.class);
-                            intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
+                            intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, false);
                             intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_SINGLE);
                             startActivityForResult(intent, 100);
                         }else {
@@ -79,9 +72,17 @@ public class SettingActivity extends BeamBaseActivity {
         });
     }
 
-    private void setColor() {
-        int color = Color.getColorByType(KeyModel.getInstance().getDefaultType());
-        toolbar.setBackgroundColor(color);
-        toolbarContainer.setBackgroundColor(color);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100){
+            if(resultCode == RESULT_OK){
+                List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                if (path.size()>0){
+                    JUtils.getSharedPreference().edit().putString(PreferenceKey.KEY_WALLPAPER,path.get(0)).apply();
+                    textWallpaper.setText(path.get(0));
+                }
+            }
+        }
     }
 }

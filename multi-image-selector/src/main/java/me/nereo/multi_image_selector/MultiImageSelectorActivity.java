@@ -71,10 +71,10 @@ public class MultiImageSelectorActivity extends FragmentActivity implements Mult
         // 完成按钮
         mSubmitButton = (Button) findViewById(R.id.commit);
         if(resultList == null || resultList.size()<=0){
-            mSubmitButton.setText("完成");
+            mSubmitButton.setText(getString(R.string.finish));
             mSubmitButton.setEnabled(false);
         }else{
-            mSubmitButton.setText("完成("+resultList.size()+"/"+mDefaultCount+")");
+            mSubmitButton.setText(getString(R.string.finish)+"("+resultList.size()+"/"+mDefaultCount+")");
             mSubmitButton.setEnabled(true);
         }
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +107,7 @@ public class MultiImageSelectorActivity extends FragmentActivity implements Mult
         }
         // 有图片之后，改变按钮状态
         if(resultList.size() > 0){
-            mSubmitButton.setText("完成("+resultList.size()+"/"+mDefaultCount+")");
+            mSubmitButton.setText(getString(R.string.finish)+"("+resultList.size()+"/"+mDefaultCount+")");
             if(!mSubmitButton.isEnabled()){
                 mSubmitButton.setEnabled(true);
             }
@@ -118,13 +118,13 @@ public class MultiImageSelectorActivity extends FragmentActivity implements Mult
     public void onImageUnselected(String path) {
         if(resultList.contains(path)){
             resultList.remove(path);
-            mSubmitButton.setText("完成("+resultList.size()+"/"+mDefaultCount+")");
+            mSubmitButton.setText(getString(R.string.finish)+"("+resultList.size()+"/"+mDefaultCount+")");
         }else{
-            mSubmitButton.setText("完成("+resultList.size()+"/"+mDefaultCount+")");
+            mSubmitButton.setText(getString(R.string.finish)+"("+resultList.size()+"/"+mDefaultCount+")");
         }
         // 当为选择图片时候的状态
         if(resultList.size() == 0){
-            mSubmitButton.setText("完成");
+            mSubmitButton.setText(getString(R.string.finish));
             mSubmitButton.setEnabled(false);
         }
     }

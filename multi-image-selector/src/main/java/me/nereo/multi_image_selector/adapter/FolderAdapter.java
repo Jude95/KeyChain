@@ -8,7 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -78,14 +79,14 @@ public class FolderAdapter extends BaseAdapter {
         }
         if (holder != null) {
             if(i == 0){
-                holder.name.setText("所有图片");
+                holder.name.setText(viewGroup.getContext().getString(R.string.folder_all));
                 holder.size.setText(getTotalImageSize()+"张");
                 if(mFolders.size()>0){
                     Folder f = mFolders.get(0);
-                    Picasso.with(mContext)
+                    Glide.with(mContext)
                             .load(new File(f.cover.path))
                             .error(R.drawable.default_error)
-                            .resize(mImageSize, mImageSize)
+                            .override(mImageSize, mImageSize)
                             .centerCrop()
                             .into(holder.cover);
                 }
@@ -139,10 +140,10 @@ public class FolderAdapter extends BaseAdapter {
             name.setText(data.name);
             size.setText(data.images.size()+"张");
             // 显示图片
-            Picasso.with(mContext)
+            Glide.with(mContext)
                     .load(new File(data.cover.path))
                     .placeholder(R.drawable.default_error)
-                    .resize(mImageSize, mImageSize)
+                    .override(mImageSize, mImageSize)
                     .centerCrop()
                     .into(cover);
             // TODO 选择标识
