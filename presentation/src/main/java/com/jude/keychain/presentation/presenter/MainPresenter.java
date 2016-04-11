@@ -15,11 +15,8 @@ import com.jude.utils.JUtils;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 import rx.Observable;
-import rx.functions.Action1;
-import rx.functions.Func1;
 
 /**
  * Created by zhuchenxi on 15/11/3.
@@ -58,15 +55,10 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
             return;
         }
         KeyModel.getInstance().registerKeyEntry()
-                .flatMap(new Func1<List<KeyEntity>, Observable<List<KeyEntity>>>() {
-                    @Override
-                    public Observable<List<KeyEntity>> call(List<KeyEntity> keyEntities) {
-                        return Observable.from(keyEntities)
-                                .filter(keyEntity -> (keyEntity.getName().toLowerCase().contains(key.toLowerCase())
-                                        || PinyinHelper.getShortPinyin(keyEntity.getName()).contains(key.toLowerCase())))
-                                .toList();
-                    }
-                })
+                .flatMap(keyEntities -> Observable.from(keyEntities)
+                        .filter(keyEntity -> (keyEntity.getName().toLowerCase().contains(key.toLowerCase())
+                                || PinyinHelper.getShortPinyin(keyEntity.getName()).contains(key.toLowerCase())))
+                        .toList())
                 .doOnNext(keyEntities -> getView().setCount(keyEntities.size()))
                 .unsafeSubscribe(getRefreshSubscriber());
     }
@@ -75,33 +67,18 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
     public void onRefresh() {
         KeyModel.getInstance().registerKeyEntry()
                 .doOnNext(keyEntities -> getView().setCount(keyEntities.size()))
-                .doOnNext(new Action1<List<KeyEntity>>() {
-                    @Override
-                    public void call(List<KeyEntity> keyEntities) {
-                        JUtils.Log("Begin");
-
-                        for (KeyEntity keyEntity : keyEntities) {
-                            JUtils.Log("ID:"+keyEntity.getId());
-                        }
-                        JUtils.Log("End");
-
+                .doOnNext(keyEntities -> Collections.sort(keyEntities, (Comparator<KeyEntity>) (lhs, rhs) -> {
+                    int delta1 = lhs.getType() - getColorType();
+                    if (delta1 > 0) {
+                        delta1 += Color.values().length;
+                        delta1 *= -1;
                     }
-                })
-                .doOnNext(keyEntities -> Collections.sort(keyEntities, new Comparator<KeyEntity>() {
-                    @Override
-                    public int compare(KeyEntity lhs, KeyEntity rhs) {
-                        int delta1 = lhs.getType() - getColorType();
-                        if (delta1 > 0) {
-                            delta1 += Color.values().length;
-                            delta1 *= -1;
-                        }
-                        int delta2 = rhs.getType() - getColorType();
-                        if (delta2 > 0) {
-                            delta2 += Color.values().length;
-                            delta2 *= -1;
-                        }
-                        return delta2 - delta1;
+                    int delta2 = rhs.getType() - getColorType();
+                    if (delta2 > 0) {
+                        delta2 += Color.values().length;
+                        delta2 *= -1;
                     }
+                    return delta2 - delta1;
                 }))
                 .unsafeSubscribe(getRefreshSubscriber());
     }

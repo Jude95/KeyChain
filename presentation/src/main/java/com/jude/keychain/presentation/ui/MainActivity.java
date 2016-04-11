@@ -195,11 +195,9 @@ public class MainActivity extends BeamListActivity<MainPresenter, KeyEntity>
             startActivity(new Intent(this, ExportActivity.class));
         } else if (id == R.id.nav_import) {
             startActivity(new Intent(this, ImportActivity.class));
-        } else if (id == R.id.nav_about) {
-            startActivity(new Intent(this, AboutActivity.class));
-        } else if (id == R.id.nav_help) {
-            startActivity(new Intent(this, HelpActivity.class));
-        } else if (id == R.id.nav_protocol) {
+        } else if (id == R.id.nav_setting) {
+            startActivity(new Intent(this, SettingActivity.class));
+        }else if (id == R.id.nav_protocol) {
             startActivity(new Intent(this, ProtocolActivity.class));
         }
 

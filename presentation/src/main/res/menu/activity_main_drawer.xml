@@ -22,13 +22,10 @@
 
     <item android:title="@string/nav_more">
         <menu android:checkableBehavior="none">
-            <item android:id="@+id/nav_help"
-                android:icon="@drawable/nav_help"
-                android:title="@string/nav_help" />
+            <item android:id="@+id/nav_setting"
+                android:icon="@drawable/nav_setting"
+                android:title="@string/nav_setting" />
 
-            <item android:id="@+id/nav_about"
-                android:icon="@drawable/nav_about"
-                android:title="@string/nav_about" />
 
             <item android:id="@+id/nav_protocol"
                 android:icon="@drawable/nav_protocol"

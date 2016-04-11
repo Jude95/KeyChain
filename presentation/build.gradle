@@ -5,7 +5,7 @@ Properties props = new Properties()
 props.load(new FileInputStream(file("../config/signing.properties")))
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId rootProject.ext.applicationId
@@ -31,11 +31,14 @@ android {
             // 移除无用的resource文件
             shrinkResources true
             signingConfig signingConfigs.release
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             signingConfig signingConfigs.release
             applicationIdSuffix '.debug'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -66,7 +69,9 @@ dependencies {
     compile presentationDependencies.jpinyin
     compile presentationDependencies.tagview
     compile presentationDependencies.searchview
+    compile presentationDependencies.rxPermissions
     compile project(':data')
     compile project(':domain')
     compile project(':patternlock')
+    compile project(':multi-image-selector')
 }

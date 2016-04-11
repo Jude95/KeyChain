@@ -20,7 +20,8 @@
     <string name="done">确定</string>
     <string name="create_password">生成密码</string>
     <string name="empty">无</string>
-    <string name="key_time">创建日期</string>
+    <string name="key_time">上次修改日期</string>
+    <string name="timeout_info">已结超过6个月没有更换了,您最好及时更换密码</string>
     <string name="date_format">yyyy年MM月dd日 HH:mm</string>
     <string name="total_format">一共%d条钥匙</string>
     <string name="delete">删除</string>

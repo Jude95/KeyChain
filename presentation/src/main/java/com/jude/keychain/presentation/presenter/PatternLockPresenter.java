@@ -6,7 +6,7 @@ import android.os.Handler;
 
 import com.jude.beam.bijection.Presenter;
 import com.jude.keychain.data.model.KeyModel;
-import com.jude.keychain.presentation.ui.LockActivity;
+import com.jude.keychain.presentation.ui.PatternLockActivity;
 import com.jude.keychain.presentation.ui.MainActivity;
 import com.jude.keychain.presentation.ui.SetLockActivity;
 import com.jude.utils.JUtils;
@@ -20,7 +20,7 @@ import rx.android.schedulers.AndroidSchedulers;
 /**
  * Created by Mr.Jude on 2015/11/7.
  */
-public class LockPresenter extends Presenter<LockActivity> {
+public class PatternLockPresenter extends Presenter<PatternLockActivity> {
 
     public static final int ERROR_TIME_MAX = 5;
     public static final int ERROR_DELAY = 60000;
@@ -33,7 +33,7 @@ public class LockPresenter extends Presenter<LockActivity> {
 
 
     @Override
-    protected void onCreate(LockActivity view, Bundle savedState) {
+    protected void onCreate(PatternLockActivity view, Bundle savedState) {
         super.onCreate(view, savedState);
         if (KeyModel.getInstance().isFirst()){
             getView().startActivity(new Intent(getView(), SetLockActivity.class));
@@ -42,7 +42,7 @@ public class LockPresenter extends Presenter<LockActivity> {
     }
 
     @Override
-    protected void onCreateView(LockActivity view) {
+    protected void onCreateView(PatternLockActivity view) {
         super.onCreateView(view);
         readErrorTime();
         checkErrorDelay();

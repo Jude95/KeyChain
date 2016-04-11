@@ -10,6 +10,7 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.keychain.R;
 import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
+import com.jude.keychain.domain.value.PreferenceKey;
 import com.jude.utils.JUtils;
 
 import butterknife.Bind;
@@ -47,6 +48,6 @@ public class KeyViewHolder extends BaseViewHolder<KeyEntity> {
         color.setBackgroundColor(Color.getColorByType(data.getType()));
         name.setText(data.getName());
         account.setText(data.getAccount());
-        password.setText(data.getPassword());
+        password.setText(JUtils.getSharedPreference().getBoolean(PreferenceKey.KEY_DISPLAY_PASSWORD,true)?data.getPassword():"********");
     }
 }

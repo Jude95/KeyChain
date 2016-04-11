@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -51,8 +53,9 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
     LinearLayout accountContainer;
     @Bind(R.id.password_container)
     LinearLayout passwordContainer;
+    @Bind(R.id.info_time)
+    ImageView infoTime;
 
-    private KeyEntity data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,23 +65,22 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
 
         floatingActionButton.setOnClickListener(v -> {
             Intent i = new Intent(this, AddActivity.class);
-            i.putExtra("id", data.getId());
+            i.putExtra("id", getPresenter().getData().getId());
             startActivity(i);
         });
         accountContainer.setOnClickListener(v -> new MaterialDialog.Builder(this)
                 .items(new String[]{v.getContext().getString(R.string.copy_account)})
-                .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(data.getAccount()))
+                .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(getPresenter().getData().getAccount()))
                 .show());
         passwordContainer.setOnClickListener(v -> new MaterialDialog.Builder(this)
                 .items(new String[]{v.getContext().getString(R.string.copy_password)})
-                .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(data.getPassword()))
+                .itemsCallback((materialDialog, view, i, charSequence) -> JUtils.copyToClipboard(getPresenter().getData().getPassword()))
                 .show());
     }
 
     @Override
     public void setData(KeyEntity data) {
         super.setData(data);
-        this.data = data;
         int color = com.jude.keychain.domain.value.Color.getColorByType(data.getType());
         toolbar.setBackgroundColor(color);
         appbar.setBackgroundColor(color);
@@ -91,6 +93,8 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
         password.setText(data.getPassword());
         time.setText(new JTimeTransform(data.getTime()).toString(getString(R.string.date_format)));
         note.setText(TextUtils.isEmpty(data.getNote()) ? getString(R.string.empty) : data.getNote());
+        infoTime.setOnClickListener(v -> JUtils.Toast(getString(R.string.timeout_info)));
+        infoTime.setVisibility(System.currentTimeMillis()/1000 - data.getTime() > 15552000 ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -105,7 +109,7 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
 
             new MaterialDialog.Builder(this)
                     .title(R.string.delete)
-                    .content(String.format(getString(R.string.confirm_format), data.getName()))
+                    .content(String.format(getString(R.string.confirm_format), getPresenter().getData().getName()))
                     .positiveText(R.string.delete)
                     .negativeText(R.string.cancel)
                     .positiveColor(Color.RED)

@@ -3,6 +3,7 @@ package com.jude.keychain.presentation.app;
 import android.app.Application;
 
 import com.jude.beam.Beam;
+import com.jude.keychain.BuildConfig;
 import com.jude.utils.JUtils;
 
 /**
@@ -13,7 +14,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         JUtils.initialize(this);
-        JUtils.setDebug(true, "KeyChain");
+        JUtils.setDebug(BuildConfig.DEBUG, "KeyChain");
         Beam.init(this);
         Beam.setActivityLifeCycleDelegateProvider(ActivityDelegate::new);
     }

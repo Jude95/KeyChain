@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jude.keychain" >
-
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".presentation.app.App"
         android:allowBackup="true"
@@ -18,7 +19,7 @@
 
         <activity android:name=".presentation.ui.KeyDetailActivity"/>
 
-        <activity android:name=".presentation.ui.LockActivity">
+        <activity android:name=".presentation.ui.PatternLockActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -38,6 +39,7 @@
             android:label="@string/nav_help"/>
         <activity android:name=".presentation.ui.ProtocolActivity"
             android:label="@string/nav_protocol"/>
+        <activity android:name=".presentation.ui.SettingActivity"/>
     </application>
 
 </manifest>

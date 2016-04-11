@@ -1,7 +1,9 @@
 package com.jude.keychain.presentation.ui;
 
+import android.app.Service;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.widget.TextView;
 
 import com.jude.beam.bijection.RequiresPresenter;
@@ -30,6 +32,7 @@ public class SetLockActivity extends BeamBaseActivity<SetLockPresenter> {
 
     private String mSeed;
     private int status = 0;
+    Vibrator vib;
 
     public static final int FIRST = 1;
     public static final int REPEAT = 2;
@@ -40,6 +43,7 @@ public class SetLockActivity extends BeamBaseActivity<SetLockPresenter> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
+        vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
 
         setContentView(R.layout.activity_set_lock);
         ButterKnife.bind(this);
@@ -57,6 +61,7 @@ public class SetLockActivity extends BeamBaseActivity<SetLockPresenter> {
             public void onPatternCellAdded(List<PatternView.Cell> pattern) {
                 PatternView.Cell cell = pattern.get(pattern.size() - 1);
                 mSeed += getNumberByPosition(cell.getColumn(), cell.getRow());
+                vib.vibrate(10);
             }
 
             @Override

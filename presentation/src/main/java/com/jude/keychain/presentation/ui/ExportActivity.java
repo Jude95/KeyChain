@@ -48,8 +48,9 @@ public class ExportActivity extends BeamBaseActivity<ExportPresenter> implements
         setContentView(R.layout.activity_export);
         ButterKnife.bind(this);
         setColor();
+
         copy.setOnClickListener(v -> {
-            if (password.getEditText().getText().toString().isEmpty()){
+            if (password.getEditText().getText().toString().isEmpty()) {
                 password.setError(getString(R.string.error_password_empty));
                 return;
             }

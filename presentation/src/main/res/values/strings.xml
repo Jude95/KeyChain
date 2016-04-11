@@ -20,10 +20,11 @@
     <string name="done">OK</string>
     <string name="create_password">Generate</string>
     <string name="empty">Empty</string>
-    <string name="key_time">Created Time</string>
+    <string name="key_time">Last Edit Time</string>
     <string name="date_format">yyyy/MM/dd HH:mm</string>
     <string name="total_format">%d Passwords All</string>
     <string name="delete">delete</string>
+    <string name="timeout_info">Already six months did not change password.You had better change it</string>
     <string name="error_input">Input Invalid</string>
     <string name="delete_done">It has been deleted</string>
     <string name="confirm_format">Are you sure to delete %s?</string>
@@ -106,6 +107,15 @@ passwords once in a while and send to anywhere to keep it, such as PC disk. and 
     <string name="error_no_account">You have not saved an account</string>
     <string name="developer">Developed by Jude95</string>
     <string name="contact">Contact me：973829691@qq.com</string>
+    <string name="display_password">Display password</string>
+    <string name="display_password_info">Display password on main screen</string>
+    <string name="display_pattern_path">Display pattern path</string>
+    <string name="display_pattern_path_info">Display pattern path on lock screen</string>
+    <string name="wallpaper">Wallpaper</string>
+    <string name="wallpaper_info">change the wallpaper on lock screen</string>
+    <string name="default_wallpaper">Default wallpaper</string>
+    <string name="nav_setting">Setting</string>
+    <string name="request_permissions">I can\'t select Image with out Permissions</string>
     <string-array name="password_type">
         <item>Numbers and Letters</item>
         <item>Numbers, LowerCase and UpperCase letters</item>

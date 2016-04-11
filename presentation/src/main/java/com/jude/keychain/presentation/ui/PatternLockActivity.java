@@ -1,13 +1,16 @@
 package com.jude.keychain.presentation.ui;
 
+import android.app.Service;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.widget.TextView;
 
 import com.jude.beam.bijection.RequiresPresenter;
 import com.jude.beam.expansion.BeamBaseActivity;
 import com.jude.keychain.R;
-import com.jude.keychain.presentation.presenter.LockPresenter;
+import com.jude.keychain.domain.value.PreferenceKey;
+import com.jude.keychain.presentation.presenter.PatternLockPresenter;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.utils.JUtils;
 
@@ -20,8 +23,8 @@ import me.zhanghai.patternlock.PatternView;
 /**
  * Created by Mr.Jude on 2015/11/7.
  */
-@RequiresPresenter(LockPresenter.class)
-public class LockActivity extends BeamBaseActivity<LockPresenter> {
+@RequiresPresenter(PatternLockPresenter.class)
+public class PatternLockActivity extends BeamBaseActivity<PatternLockPresenter> {
 
     @Bind(R.id.pattern)
     PatternView patternView;
@@ -29,14 +32,16 @@ public class LockActivity extends BeamBaseActivity<LockPresenter> {
     TextView hint;
 
     private String mSeed;
-
+    Vibrator vib;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lock);
+        setContentView(R.layout.activity_lock_pattern);
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         ButterKnife.bind(this);
+        vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
         patternView.setInputEnabled(true);
+        patternView.setInStealthMode(!JUtils.getSharedPreference().getBoolean(PreferenceKey.KEY_DISPLAY_PATH,true));
         patternView.setOnPatternListener(new PatternView.OnPatternListener() {
             @Override
             public void onPatternStart() {
@@ -50,14 +55,13 @@ public class LockActivity extends BeamBaseActivity<LockPresenter> {
 
             @Override
             public void onPatternCellAdded(List<PatternView.Cell> pattern) {
-
                 PatternView.Cell cell = pattern.get(pattern.size() - 1);
                 mSeed += getNumberByPosition(cell.getColumn(), cell.getRow());
+                vib.vibrate(10);
             }
 
             @Override
             public void onPatternDetected(List<PatternView.Cell> pattern) {
-
                 getPresenter().checkSeed(mSeed);
             }
         });

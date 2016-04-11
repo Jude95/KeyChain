@@ -133,6 +133,7 @@ public class KeyModel extends AbsModel {
     public KeyEntity getKeyById(int id){
         for (KeyEntity keyEntity : mData) {
             if (keyEntity.getId() == id){
+                JUtils.Log("getTime"+keyEntity.getTime());
                 return keyEntity.clone();
             }
         }
@@ -144,6 +145,10 @@ public class KeyModel extends AbsModel {
             if(keyEntity.getId() == id)return true;
         }
         return false;
+    }
+
+    public void refresh(){
+        mKeyEntitiesSubject.onNext(mData);
     }
 
     public void createKey(String name,String account,String password,String note,int type){
@@ -168,6 +173,9 @@ public class KeyModel extends AbsModel {
     public void updateKey(int id,String name,String account,String password,String note,int type){
         for (KeyEntity keyEntity : mData) {
             if (keyEntity.getId() == id){
+                if (!keyEntity.getPassword().equals(password)) {
+                    keyEntity.setTime(System.currentTimeMillis() / 1000 - 31104000);
+                }
                 keyEntity.setName(name);
                 keyEntity.setAccount(account);
                 keyEntity.setPassword(password);
