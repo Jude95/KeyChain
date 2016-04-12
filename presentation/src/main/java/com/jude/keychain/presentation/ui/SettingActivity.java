@@ -3,6 +3,7 @@ package com.jude.keychain.presentation.ui;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.FrameLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class SettingActivity extends BeamBaseActivity {
         switchDisplayPath.setChecked(JUtils.getSharedPreference().getBoolean(PreferenceKey.KEY_DISPLAY_PATH, true));
         switchDisplayPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
             JUtils.getSharedPreference().edit().putBoolean(PreferenceKey.KEY_DISPLAY_PASSWORD, isChecked).apply();
-            KeyModel.getInstance().refresh();
+            new Handler().postDelayed(()->KeyModel.getInstance().refresh(),300);
         });
         switchDisplayPath.setOnCheckedChangeListener((buttonView, isChecked) -> JUtils.getSharedPreference().edit().putBoolean(PreferenceKey.KEY_DISPLAY_PATH, isChecked).apply());
         textWallpaper.setText(JUtils.getSharedPreference().getString(PreferenceKey.KEY_WALLPAPER,getString(R.string.default_wallpaper)));
