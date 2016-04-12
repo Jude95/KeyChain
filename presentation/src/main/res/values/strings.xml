@@ -59,7 +59,7 @@
         1.Purpose\n
             \t\tKeep your accounts\' passwords which is group by color , and don\'t worry about security problem.\n\n
         2.Security\n
-            \t\tThis APP ask for no permission which is to say it can not upload your passwords or save it to SD card. It is saved in the private database with encrypt, so
+            \t\tThis APP ask for Vibration(for pattern unlock) and SD card Read(for custom wallpaper) Permission which is to say it can not upload your passwords or save it to SD card. It is saved in the private database with encrypt, so
 no apps could access it even if they get the root privilege.\n\n
         3.Encryption\n
             \t\tEncrypted by AES(Advanced Encryption Standard) which takes billions of years to crack without your key.\n

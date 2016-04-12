@@ -11,7 +11,6 @@ import com.jude.keychain.domain.entities.KeyEntity;
 import com.jude.keychain.domain.value.Color;
 import com.jude.keychain.presentation.ui.KeyDetailActivity;
 import com.jude.keychain.presentation.ui.MainActivity;
-import com.jude.utils.JUtils;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -76,6 +75,10 @@ public class MainPresenter extends BeamListActivityPresenter<MainActivity,KeyEnt
                     if (delta2 > 0) {
                         delta2 += Color.values().length;
                         delta2 *= -1;
+                    }
+                    if (delta2 == delta1){
+                        delta1 = -1*PinyinHelper.getShortPinyin(lhs.getName()).toLowerCase().charAt(0);
+                        delta2 = -1*PinyinHelper.getShortPinyin(rhs.getName()).toLowerCase().charAt(0);
                     }
                     return delta2 - delta1;
                 }))

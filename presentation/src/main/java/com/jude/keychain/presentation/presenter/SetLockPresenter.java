@@ -54,7 +54,7 @@ public class SetLockPresenter extends Presenter<SetLockActivity> {
     }
 
     public void back(){
-        if (KeyModel.getInstance().isFirst()){
+        if (!KeyModel.getInstance().isFirst()){
             getView().startActivity(new Intent(getView(),MainActivity.class));
         }
         getView().finish();

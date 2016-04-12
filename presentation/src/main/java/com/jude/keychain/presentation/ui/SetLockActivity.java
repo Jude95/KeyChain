@@ -61,7 +61,7 @@ public class SetLockActivity extends BeamBaseActivity<SetLockPresenter> {
             public void onPatternCellAdded(List<PatternView.Cell> pattern) {
                 PatternView.Cell cell = pattern.get(pattern.size() - 1);
                 mSeed += getNumberByPosition(cell.getColumn(), cell.getRow());
-                vib.vibrate(10);
+                vib.vibrate(5);
             }
 
             @Override

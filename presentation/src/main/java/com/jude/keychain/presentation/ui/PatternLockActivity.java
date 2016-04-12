@@ -46,10 +46,13 @@ public class PatternLockActivity extends BeamBaseActivity<PatternLockPresenter> 
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         ButterKnife.bind(this);
         String image = JUtils.getSharedPreference().getString(PreferenceKey.KEY_WALLPAPER,null);
-        JUtils.Log("wallpaper"+(wallpaper==null));
-        JUtils.Log("wallpaper"+(findViewById(R.id.wallpaper)==null));
         if (image!=null){
-            Glide.with(this).load(new File(image)).error(R.drawable.bg_lock).into(wallpaper);
+            Glide.with(this)
+                    .load(new File(image))
+                    .placeholder(R.color.black)
+                    .error(R.drawable.bg_lock)
+                    .crossFade(300)
+                    .into(wallpaper);
         }
         vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
         patternView.setInputEnabled(true);
@@ -69,7 +72,7 @@ public class PatternLockActivity extends BeamBaseActivity<PatternLockPresenter> 
             public void onPatternCellAdded(List<PatternView.Cell> pattern) {
                 PatternView.Cell cell = pattern.get(pattern.size() - 1);
                 mSeed += getNumberByPosition(cell.getColumn(), cell.getRow());
-                vib.vibrate(10);
+                vib.vibrate(5);
             }
 
             @Override

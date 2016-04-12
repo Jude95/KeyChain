@@ -86,7 +86,7 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
         appbar.setBackgroundColor(color);
         collapsingToolbar.setContentScrimColor(color);
         collapsingToolbar.setBackgroundColor(color);
-        collapsingToolbar.setStatusBarScrimColor(color);
+        collapsingToolbar.setStatusBarScrimColor(Color.TRANSPARENT);
 
         collapsingToolbar.setTitle(data.getName());
         account.setText(data.getAccount());
@@ -94,7 +94,7 @@ public class KeyDetailActivity extends BeamDataActivity<KeyDetailPresenter, KeyE
         time.setText(new JTimeTransform(data.getTime()).toString(getString(R.string.date_format)));
         note.setText(TextUtils.isEmpty(data.getNote()) ? getString(R.string.empty) : data.getNote());
         infoTime.setOnClickListener(v -> JUtils.Toast(getString(R.string.timeout_info)));
-        infoTime.setVisibility(System.currentTimeMillis()/1000 - data.getTime() > 15552000 ? View.VISIBLE : View.GONE);
+        infoTime.setVisibility(System.currentTimeMillis() / 1000 - data.getTime() > 15552000 ? View.VISIBLE : View.GONE);
     }
 
     @Override
