@@ -3,6 +3,7 @@
 -keep class butterknife.** { *; }
 -keep class afollestad.** { *; }
 -keep class zhanghai.** { *; }
+-keep class me.zhanghai.** {*;}
 -dontwarn butterknife.internal.**
 -keep class **$$ViewBinder { *; }
 -keepclasseswithmembernames class * {
