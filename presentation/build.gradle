@@ -30,13 +30,13 @@ android {
             // 移除无用的resource文件
             shrinkResources true
             signingConfig signingConfigs.release
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             signingConfig signingConfigs.release
             applicationIdSuffix '.debug'
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -65,12 +65,8 @@ dependencies {
     compile presentationDependencies.swipeBackHelper
     compile presentationDependencies.butterKnife
     compile presentationDependencies.utils
-    compile (presentationDependencies.materialDialogsCore) {
-        transitive = true
-    }
-    compile (presentationDependencies.materialDialogsCommons){
-        transitive = true
-    }
+    compile presentationDependencies.materialDialogsCore
+    compile presentationDependencies.materialDialogsCommons
     compile presentationDependencies.ripple
     compile presentationDependencies.jpinyin
     compile presentationDependencies.tagview

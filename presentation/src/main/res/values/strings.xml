@@ -35,7 +35,7 @@
     <string name="all">All</string>
     <string name="search">Search</string>
     <string name="patter_error">Wrong Pattern</string>
-    <string name="pattern_success">Right Pattern</string>
+    <string name="pattern_success">Accept</string>
     <string name="seed_set">Draw an unlock pattern</string>
     <string name="seed_confirm">Draw pattern again to confirm</string>
     <string name="seed_check">Confirm saved pattern</string>
