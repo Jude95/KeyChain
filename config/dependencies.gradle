@@ -4,7 +4,7 @@ ext {
     versionCode = 10
     versionName = "2.0"
 
-    androidBuildToolsVersion = '23.0.3'
+    androidBuildToolsVersion = '23.0.1'
     androidMinSdkVersion = 15
     androidTargetSdkVersion = 23
     androidCompileSdkVersion = 23
@@ -16,7 +16,7 @@ ext {
     swipeBackHelperVersion  = '2.1.5'
     butterKnife             = '7.0.1'
     utilsVersion            = '1.0.8'
-    materialDialogsVersion  = '0.8.5.0'
+    materialDialogsVersion  = '0.8.5.7'
     gsonVersion             = '2.4'
     rippleVersion           = '1.0.2'
     jpinyinVersion          = '1.0'

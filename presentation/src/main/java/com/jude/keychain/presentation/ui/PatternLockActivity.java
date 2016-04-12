@@ -46,6 +46,8 @@ public class PatternLockActivity extends BeamBaseActivity<PatternLockPresenter> 
         SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
         ButterKnife.bind(this);
         String image = JUtils.getSharedPreference().getString(PreferenceKey.KEY_WALLPAPER,null);
+        JUtils.Log("wallpaper"+(wallpaper==null));
+        JUtils.Log("wallpaper"+(findViewById(R.id.wallpaper)==null));
         if (image!=null){
             Glide.with(this).load(new File(image)).error(R.drawable.bg_lock).into(wallpaper);
         }

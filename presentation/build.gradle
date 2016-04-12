@@ -65,8 +65,12 @@ dependencies {
     compile presentationDependencies.swipeBackHelper
     compile presentationDependencies.butterKnife
     compile presentationDependencies.utils
-    compile presentationDependencies.materialDialogsCore
-    compile presentationDependencies.materialDialogsCommons
+    compile (presentationDependencies.materialDialogsCore) {
+        transitive = true
+    }
+    compile (presentationDependencies.materialDialogsCommons){
+        transitive = true
+    }
     compile presentationDependencies.ripple
     compile presentationDependencies.jpinyin
     compile presentationDependencies.tagview
